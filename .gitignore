@@ -25,7 +25,7 @@
 hs_err_pid*
 
 ### NetBeans ###
-nbproject/private/
+/Transportadora/nbproject/private/
 build/
 nbbuild/
 dist/
