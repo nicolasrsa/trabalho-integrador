@@ -5,13 +5,17 @@ public class Motorista extends Pessoa{
   
   private Roteiro roteiro;
   private Veiculo veiculo;
+  private Cnh cnh;
+
+  
   
   public Motorista(){}
 
-  public Motorista(Roteiro roteiro, Veiculo veiculo, String nome, Endereco edereco) {
-    super(nome, edereco);
+  public Motorista(Roteiro roteiro, Veiculo veiculo, String nome, Endereco endereco, Cnh cnh) {
+    super(nome, endereco);
     this.roteiro = roteiro;
     this.veiculo = veiculo;
+    this.cnh = cnh;
   }  
 
   public Roteiro getRoteiro() {
@@ -28,5 +32,12 @@ public class Motorista extends Pessoa{
 
   public void setVeiculo(Veiculo veiculo) {
     this.veiculo = veiculo;
-  }  
+  }
+  public Cnh getCnh() {
+    return cnh;
+  }
+
+  public void setCnh(Cnh cnh) {
+    this.cnh = cnh;
+  }
 }
