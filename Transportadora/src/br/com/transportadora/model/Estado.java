@@ -49,7 +49,7 @@ public enum Estado {
 
   @Override
   public String toString() {
-    return descricao;
+    return sigla;
   }
 
 }

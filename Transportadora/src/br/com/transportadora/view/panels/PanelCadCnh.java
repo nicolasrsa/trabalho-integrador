@@ -5,6 +5,8 @@
  */
 package br.com.transportadora.view.panels;
 
+import br.com.transportadora.model.ClasseCNH;
+
 
 /**
  *
@@ -31,7 +33,7 @@ public class PanelCadCnh extends javax.swing.JPanel {
     jLabel1 = new javax.swing.JLabel();
     jLabel2 = new javax.swing.JLabel();
     inputNroCNH = new javax.swing.JTextField();
-    inputTipoCNH = new javax.swing.JComboBox<>();
+    inputTipoCNH = new javax.swing.JComboBox<>(ClasseCNH.values());
 
     setBorder(javax.swing.BorderFactory.createTitledBorder("CNH"));
     setLayout(new java.awt.GridBagLayout());
@@ -63,7 +65,6 @@ public class PanelCadCnh extends javax.swing.JPanel {
     gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
     add(inputNroCNH, gridBagConstraints);
 
-    inputTipoCNH.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
     inputTipoCNH.setMinimumSize(new java.awt.Dimension(120, 25));
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.gridx = 0;
@@ -78,7 +79,7 @@ public class PanelCadCnh extends javax.swing.JPanel {
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JTextField inputNroCNH;
-  private javax.swing.JComboBox<String> inputTipoCNH;
+  private javax.swing.JComboBox<ClasseCNH> inputTipoCNH;
   private javax.swing.JLabel jLabel1;
   private javax.swing.JLabel jLabel2;
   // End of variables declaration//GEN-END:variables

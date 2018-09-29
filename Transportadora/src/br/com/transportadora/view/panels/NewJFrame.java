@@ -30,10 +30,14 @@ public class NewJFrame extends javax.swing.JFrame {
   private void initComponents() {
 
     jXDatePicker1 = new org.jdesktop.swingx.JXDatePicker();
+    panelCadVeiculo1 = new br.com.transportadora.view.panels.PanelCadVeiculo();
+    panelCadMotorista1 = new br.com.transportadora.view.panels.PanelCadMotorista();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     getContentPane().setLayout(new java.awt.GridBagLayout());
     getContentPane().add(jXDatePicker1, new java.awt.GridBagConstraints());
+    getContentPane().add(panelCadVeiculo1, new java.awt.GridBagConstraints());
+    getContentPane().add(panelCadMotorista1, new java.awt.GridBagConstraints());
 
     pack();
   }// </editor-fold>//GEN-END:initComponents
@@ -77,5 +81,7 @@ public class NewJFrame extends javax.swing.JFrame {
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private org.jdesktop.swingx.JXDatePicker jXDatePicker1;
+  private br.com.transportadora.view.panels.PanelCadMotorista panelCadMotorista1;
+  private br.com.transportadora.view.panels.PanelCadVeiculo panelCadVeiculo1;
   // End of variables declaration//GEN-END:variables
 }

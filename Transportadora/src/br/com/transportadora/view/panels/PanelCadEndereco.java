@@ -5,6 +5,8 @@
  */
 package br.com.transportadora.view.panels;
 
+import br.com.transportadora.model.Estado;
+
 
 /**
  *
@@ -38,7 +40,7 @@ public class PanelCadEndereco extends javax.swing.JPanel {
     inputBairro = new javax.swing.JTextField();
     inputNro = new javax.swing.JSpinner();
     inputCidade = new javax.swing.JTextField();
-    inputEstado = new javax.swing.JComboBox<>();
+    inputEstado = new javax.swing.JComboBox<>(Estado.values());
     jLabel7 = new javax.swing.JLabel();
     jLabel8 = new javax.swing.JLabel();
     inputCep = new javax.swing.JTextField();
@@ -141,7 +143,6 @@ public class PanelCadEndereco extends javax.swing.JPanel {
     gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
     add(inputCidade, gridBagConstraints);
 
-    inputEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
     inputEstado.setMinimumSize(new java.awt.Dimension(120, 25));
     inputEstado.setPreferredSize(new java.awt.Dimension(120, 25));
     gridBagConstraints = new java.awt.GridBagConstraints();
@@ -193,7 +194,7 @@ public class PanelCadEndereco extends javax.swing.JPanel {
   private javax.swing.JTextField inputCep;
   private javax.swing.JTextField inputCidade;
   private javax.swing.JTextField inputComplemento;
-  private javax.swing.JComboBox<String> inputEstado;
+  private javax.swing.JComboBox<Estado> inputEstado;
   private javax.swing.JSpinner inputNro;
   private javax.swing.JTextField inputRua;
   private javax.swing.JLabel jLabel1;

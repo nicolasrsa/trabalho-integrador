@@ -10,12 +10,12 @@ package br.com.transportadora.view.panels;
  *
  * @author hatachi
  */
-public class panelCadMotorista extends javax.swing.JPanel {
+public class PanelCadMotorista extends javax.swing.JPanel {
 
   /**
    * Creates new form panelCadVeiculo
    */
-  public panelCadMotorista() {
+  public PanelCadMotorista() {
     initComponents();
   }
 
@@ -94,6 +94,7 @@ public class panelCadMotorista extends javax.swing.JPanel {
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.gridx = 0;
     gridBagConstraints.gridy = 7;
+    gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
     add(btnSalvar, gridBagConstraints);
   }// </editor-fold>//GEN-END:initComponents
 

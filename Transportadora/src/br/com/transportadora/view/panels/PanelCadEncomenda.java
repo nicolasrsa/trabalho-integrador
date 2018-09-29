@@ -43,6 +43,7 @@ public class PanelCadEncomenda extends javax.swing.JPanel {
     jLabel5 = new javax.swing.JLabel();
     inputCodLocalizador = new javax.swing.JTextField();
     inputPeso = new javax.swing.JSpinner();
+    btnSalvar = new javax.swing.JButton();
 
     setLayout(new java.awt.GridBagLayout());
 
@@ -170,10 +171,19 @@ public class PanelCadEncomenda extends javax.swing.JPanel {
     gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
     gridBagConstraints.weightx = 1.0;
     add(jPanel3, gridBagConstraints);
+
+    btnSalvar.setText("Salvar");
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 0;
+    gridBagConstraints.gridy = 2;
+    gridBagConstraints.gridwidth = 2;
+    gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+    add(btnSalvar, gridBagConstraints);
   }// </editor-fold>//GEN-END:initComponents
 
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
+  private javax.swing.JButton btnSalvar;
   private javax.swing.JTextField inputCodLocalizador;
   private org.jdesktop.swingx.JXDatePicker inputDataDeposito;
   private javax.swing.JTextField inputNomeDestinatario;

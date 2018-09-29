@@ -5,18 +5,35 @@
  */
 package br.com.transportadora.view.panels;
 
+import javax.swing.DefaultComboBoxModel;
+
 
 /**
  *
  * @author hatachi
  */
-public class panelCadVeiculo extends javax.swing.JPanel {
+public class PanelCadVeiculo extends javax.swing.JPanel {
 
   /**
    * Creates new form panelCadVeiculo
    */
-  public panelCadVeiculo() {
+  public PanelCadVeiculo() {
     initComponents();
+  }
+  
+  enum TipoVeiculo {
+    CAMINHAO_BAU("Caminhão Baú"), VAN("Van"), CARRETA("Carreta");
+    
+    private final String tipo;
+
+    TipoVeiculo(String tipo) {
+      this.tipo = tipo;
+    }
+
+    @Override
+    public String toString() {
+      return this.tipo;
+    }
   }
 
   /**
@@ -85,8 +102,8 @@ public class panelCadVeiculo extends javax.swing.JPanel {
     gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
     add(jLabel5, gridBagConstraints);
 
-    inputMarca.setMinimumSize(new java.awt.Dimension(120, 23));
-    inputMarca.setPreferredSize(new java.awt.Dimension(120, 23));
+    inputMarca.setMinimumSize(new java.awt.Dimension(150, 23));
+    inputMarca.setPreferredSize(new java.awt.Dimension(150, 23));
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.gridx = 1;
     gridBagConstraints.gridy = 1;
@@ -94,8 +111,8 @@ public class panelCadVeiculo extends javax.swing.JPanel {
     gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
     add(inputMarca, gridBagConstraints);
 
-    inputModelo.setMinimumSize(new java.awt.Dimension(120, 23));
-    inputModelo.setPreferredSize(new java.awt.Dimension(120, 23));
+    inputModelo.setMinimumSize(new java.awt.Dimension(150, 23));
+    inputModelo.setPreferredSize(new java.awt.Dimension(150, 23));
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.gridx = 1;
     gridBagConstraints.gridy = 2;
@@ -113,8 +130,8 @@ public class panelCadVeiculo extends javax.swing.JPanel {
     gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
     add(inputAno, gridBagConstraints);
 
-    inputPlaca.setMinimumSize(new java.awt.Dimension(120, 23));
-    inputPlaca.setPreferredSize(new java.awt.Dimension(120, 23));
+    inputPlaca.setMinimumSize(new java.awt.Dimension(150, 23));
+    inputPlaca.setPreferredSize(new java.awt.Dimension(150, 23));
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.gridx = 1;
     gridBagConstraints.gridy = 3;
@@ -122,9 +139,14 @@ public class panelCadVeiculo extends javax.swing.JPanel {
     gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
     add(inputPlaca, gridBagConstraints);
 
-    inputTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-    inputTipo.setMinimumSize(new java.awt.Dimension(120, 25));
-    inputTipo.setPreferredSize(new java.awt.Dimension(120, 25));
+    inputTipo.setModel(new DefaultComboBoxModel<TipoVeiculo>(TipoVeiculo.values()));
+    inputTipo.setMinimumSize(new java.awt.Dimension(150, 25));
+    inputTipo.setPreferredSize(new java.awt.Dimension(150, 25));
+    inputTipo.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        inputTipoActionPerformed(evt);
+      }
+    });
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.gridx = 1;
     gridBagConstraints.gridy = 5;
@@ -149,6 +171,19 @@ public class panelCadVeiculo extends javax.swing.JPanel {
     add(btnSalvar, gridBagConstraints);
   }// </editor-fold>//GEN-END:initComponents
 
+  private void inputTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputTipoActionPerformed
+    // TODO add your handling code here:
+    TipoVeiculo tipoVeiculo = (TipoVeiculo) inputTipo.getSelectedItem();
+    
+    if (tipoVeiculo.equals(TipoVeiculo.CAMINHAO_BAU)) {
+      lblIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/caminhao-bau.png")));
+    } else if (tipoVeiculo.equals(TipoVeiculo.CARRETA)) {
+      lblIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/carreta.png")));
+    } else if (tipoVeiculo.equals(TipoVeiculo.VAN)) {
+      lblIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/van.png")));
+    }
+  }//GEN-LAST:event_inputTipoActionPerformed
+
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JButton btnSalvar;
@@ -156,7 +191,7 @@ public class panelCadVeiculo extends javax.swing.JPanel {
   private javax.swing.JTextField inputMarca;
   private javax.swing.JTextField inputModelo;
   private javax.swing.JTextField inputPlaca;
-  private javax.swing.JComboBox<String> inputTipo;
+  private javax.swing.JComboBox<TipoVeiculo> inputTipo;
   private javax.swing.JLabel jLabel1;
   private javax.swing.JLabel jLabel2;
   private javax.swing.JLabel jLabel3;
