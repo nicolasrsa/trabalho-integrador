@@ -2,20 +2,20 @@ package br.com.transportadora.model;
 
 
 public class Endereco {
-  
+
   private String rua;
-	private String numero;
-	private String complemento;
-	private String bairro;
-	private String cidade;
-	private String estado;
-	private String cep;
+  private String numero;
+  private String complemento;
+  private String bairro;
+  private String cidade;
+  private Estado estado;
+  private String cep;
 
   public Endereco() {
   }
 
-  public Endereco(String logradouro, String numero, String complemento, String bairro, String cidade, String estado, String cep) {
-    this.rua = logradouro;
+  public Endereco(String rua, String numero, String complemento, String bairro, String cidade, Estado estado, String cep) {
+    this.rua = rua;
     this.numero = numero;
     this.complemento = complemento;
     this.bairro = bairro;
@@ -23,60 +23,61 @@ public class Endereco {
     this.estado = estado;
     this.cep = cep;
   }
-	
-	public String getRua() {
-		return rua;
-	}
-    
-	 public void setRua(String rua) {
-	        this.rua = rua;
-	    }
-	 public String getNumero() {
-	        return numero;
-	    }
 
-	    public void setNumero(String numero) {
-	        this.numero = numero;
-	    }
+  public String getRua() {
+    return rua;
+  }
 
-	    public String getComplemento() {
-	        return complemento;
-	    }
+  public void setRua(String rua) {
+    this.rua = rua;
+  }
 
-	    public void setComplemento(String complemento) {
-	        this.complemento = complemento;
-	    }
+  public String getNumero() {
+    return numero;
+  }
 
-	    public String getBairro() {
-	        return bairro;
-	    }
+  public void setNumero(String numero) {
+    this.numero = numero;
+  }
 
-	    public void setBairro(String bairro) {
-	        this.bairro = bairro;
-	    }
+  public String getComplemento() {
+    return complemento;
+  }
 
-	    public String getCidade() {
-	        return cidade;
-	    }
+  public void setComplemento(String complemento) {
+    this.complemento = complemento;
+  }
 
-	    public void setCidade(String cidade) {
-	        this.cidade = cidade;
-	    }
+  public String getBairro() {
+    return bairro;
+  }
 
-	    public String getEstado() {
-	        return estado;
-	    }
+  public void setBairro(String bairro) {
+    this.bairro = bairro;
+  }
 
-	    public void setEstado(String estado) {
-	        this.estado = estado;
-	    }
+  public String getCidade() {
+    return cidade;
+  }
 
-	    public String getCep() {
-	        return cep;
-	    }
+  public void setCidade(String cidade) {
+    this.cidade = cidade;
+  }
 
-	    public void setCep(String cep) {
-	        this.cep = cep;
-	    }
-    
+  public Estado getEstado() {
+    return estado;
+  }
+
+  public void setEstado(Estado estado) {
+    this.estado = estado;
+  }
+
+  public String getCep() {
+    return cep;
+  }
+
+  public void setCep(String cep) {
+    this.cep = cep;
+  }
+
 }
