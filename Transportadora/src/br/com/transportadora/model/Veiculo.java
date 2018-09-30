@@ -1,21 +1,23 @@
 package br.com.transportadora.model;
 
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.ArrayList;
+
 
 public abstract class Veiculo {
+
   private String marca;
   private String modelo;
   private String placa;
   private Integer ano;
   private ClasseCNH cnhMinima;
-  private final Queue<Encomenda> carga;
+  private final ArrayList<Encomenda> carga;
   private final Integer cargaMax;
   private Motorista motorista;
 
-  public Veiculo(Integer capacidade) {
+  public Veiculo(Integer capacidade, ClasseCNH cnhMinima) {
     this.cargaMax = capacidade;
-    this.carga = new LinkedList<>();
+    this.carga = new ArrayList<>(cargaMax);
+    this.cnhMinima = cnhMinima;
   }
 
   public String getMarca() {
@@ -62,17 +64,13 @@ public abstract class Veiculo {
     this.motorista = motorista;
   }
 
-  public Queue<Encomenda> getCarga() {
+  public ArrayList<Encomenda> getCarga() {
     return carga;
   }
-  
-  public Encomenda getProximaEncomenda() {
-    return this.carga.poll();
-  }
-  
+
   public Boolean adicionarEncomenda(Encomenda encomenda) {
     if (this.carga.size() < this.cargaMax) {
-      this.carga.offer(encomenda);
+      this.carga.add(encomenda);
       return true;
     }
     return false;

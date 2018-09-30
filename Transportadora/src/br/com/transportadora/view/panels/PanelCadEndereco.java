@@ -5,6 +5,7 @@
  */
 package br.com.transportadora.view.panels;
 
+import br.com.transportadora.model.Endereco;
 import br.com.transportadora.model.Estado;
 
 
@@ -19,6 +20,18 @@ public class PanelCadEndereco extends javax.swing.JPanel {
    */
   public PanelCadEndereco() {
     initComponents();
+  }
+  
+  public Endereco gerarEndereco() {
+    Endereco endereco = new Endereco();
+    endereco.setRua(inputRua.getText());
+    endereco.setNumero(((Number) inputNro.getValue()).toString());
+    endereco.setComplemento(inputComplemento.getText());
+    endereco.setBairro(inputBairro.getText());
+    endereco.setCidade(inputCidade.getText());
+    endereco.setEstado(inputEstado.getItemAt(inputEstado.getSelectedIndex()));
+    endereco.setCep(inputCep.getText());
+    return endereco;
   }
 
   /**

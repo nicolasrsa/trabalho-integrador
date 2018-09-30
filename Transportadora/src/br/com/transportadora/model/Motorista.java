@@ -3,15 +3,15 @@ package br.com.transportadora.model;
 import java.time.LocalDate;
 
 
-public class Motorista extends Pessoa{
-  
+public class Motorista extends Pessoa {
+
   private Roteiro roteiro;
   private Veiculo veiculo;
   private Cnh cnh;
   private LocalDate nascimento;
- 
-  
-  public Motorista(){}
+
+  public Motorista() {
+  }
 
   public Motorista(Roteiro roteiro, Veiculo veiculo, Cnh cnh, LocalDate nascimento, String nome, Endereco endereco) {
     super(nome, endereco);
@@ -19,7 +19,7 @@ public class Motorista extends Pessoa{
     this.veiculo = veiculo;
     this.cnh = cnh;
     this.nascimento = nascimento;
-  } 
+  }
 
   public Roteiro getRoteiro() {
     return roteiro;

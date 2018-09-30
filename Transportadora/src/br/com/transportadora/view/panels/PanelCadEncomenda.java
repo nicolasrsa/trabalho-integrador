@@ -1,15 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.transportadora.view.panels;
 
+import br.com.transportadora.model.Encomenda;
 
-/**
- *
- * @author hatachi
- */
+
 public class PanelCadEncomenda extends javax.swing.JPanel {
 
   /**
@@ -181,7 +174,6 @@ public class PanelCadEncomenda extends javax.swing.JPanel {
     add(btnSalvar, gridBagConstraints);
   }// </editor-fold>//GEN-END:initComponents
 
-
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JButton btnSalvar;
   private javax.swing.JTextField inputCodLocalizador;
@@ -200,4 +192,8 @@ public class PanelCadEncomenda extends javax.swing.JPanel {
   private br.com.transportadora.view.panels.PanelCadEndereco panelCadEnderecoDestinatario;
   private br.com.transportadora.view.panels.PanelCadEndereco panelCadEnderecoRemetente;
   // End of variables declaration//GEN-END:variables
+
+  void atualizarInfoEncomenda(Encomenda encomenda) {
+    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+  }
 }

@@ -1,9 +1,12 @@
 package br.com.transportadora.model;
 
+
 public class Carreta extends Veiculo {
+
   public static final Integer CAPACIDADE = 10;
+  public static final ClasseCNH CNH_MINIMA = ClasseCNH.C;
 
   public Carreta() {
-    super(Carreta.CAPACIDADE);
+    super(Carreta.CAPACIDADE, Carreta.CNH_MINIMA);
   }
 }

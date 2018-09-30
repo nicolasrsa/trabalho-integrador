@@ -13,17 +13,23 @@ import br.com.transportadora.model.Endereco;
  * @author hatachi
  */
 public class PanelDetalheEndereco extends javax.swing.JPanel {
-  
+
   private Endereco endereco;
 
   public PanelDetalheEndereco() {
     initComponents();
   }
 
-  public PanelDetalheEndereco(Endereco endereco) {
-    initComponents();
+  public void atualizarInfoEndereco(Endereco endereco) {
     this.endereco = endereco;
-    inserirInformacoes();
+    lblRua.setText(this.endereco.getRua());
+    lblNro.setText(this.endereco.getNumero());
+    lblBairro.setText(this.endereco.getBairro());
+    lblComplemento.setText(this.endereco.getComplemento());
+    lblCidade.setText(this.endereco.getCidade());
+    lblEstado.setText(this.endereco.getEstado().getDescricao());
+    lblCep.setText(this.endereco.getCep());
+    repaint();
   }
 
   /**
@@ -194,13 +200,4 @@ public class PanelDetalheEndereco extends javax.swing.JPanel {
   private javax.swing.JLabel lblRua;
   // End of variables declaration//GEN-END:variables
 
-  private void inserirInformacoes() {
-    lblRua.setText(endereco.getRua());
-    lblNro.setText(endereco.getNumero());
-    lblBairro.setText(endereco.getBairro());
-    lblComplemento.setText(endereco.getComplemento());
-    lblCidade.setText(endereco.getCidade());
-    lblEstado.setText(endereco.getEstado().getDescricao());
-    lblCep.setText(endereco.getCep());
-  }
 }

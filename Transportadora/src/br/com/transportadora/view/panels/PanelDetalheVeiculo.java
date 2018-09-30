@@ -5,12 +5,20 @@
  */
 package br.com.transportadora.view.panels;
 
+import br.com.transportadora.model.CaminhaoBau;
+import br.com.transportadora.model.Carreta;
+import br.com.transportadora.model.Van;
+import br.com.transportadora.model.Veiculo;
+import javax.swing.AbstractListModel;
+
 
 /**
  *
  * @author hatachi
  */
 public class PanelDetalheVeiculo extends javax.swing.JPanel {
+
+  private Veiculo veiculo;
 
   /**
    * Creates new form PanelDetalheVeiculo
@@ -45,12 +53,13 @@ public class PanelDetalheVeiculo extends javax.swing.JPanel {
     jScrollPane1 = new javax.swing.JScrollPane();
     listaCarga = new javax.swing.JList<>();
     jLabel14 = new javax.swing.JLabel();
-    jLabel16 = new javax.swing.JLabel();
+    outputIcon = new javax.swing.JLabel();
 
     jLabel5.setText("jLabel5");
 
     jLabel15.setText("jLabel15");
 
+    setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
     setLayout(new java.awt.GridBagLayout());
 
     jLabel1.setText("Marca:");
@@ -105,7 +114,9 @@ public class PanelDetalheVeiculo extends javax.swing.JPanel {
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.gridx = 1;
     gridBagConstraints.gridy = 1;
+    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
     gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+    gridBagConstraints.weightx = 1.0;
     gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
     add(outputMarca, gridBagConstraints);
 
@@ -113,7 +124,9 @@ public class PanelDetalheVeiculo extends javax.swing.JPanel {
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.gridx = 1;
     gridBagConstraints.gridy = 2;
+    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
     gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+    gridBagConstraints.weightx = 1.0;
     gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
     add(outputModelo, gridBagConstraints);
 
@@ -121,7 +134,9 @@ public class PanelDetalheVeiculo extends javax.swing.JPanel {
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.gridx = 1;
     gridBagConstraints.gridy = 3;
+    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
     gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+    gridBagConstraints.weightx = 1.0;
     gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
     add(outputAno, gridBagConstraints);
 
@@ -129,7 +144,9 @@ public class PanelDetalheVeiculo extends javax.swing.JPanel {
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.gridx = 1;
     gridBagConstraints.gridy = 4;
+    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
     gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+    gridBagConstraints.weightx = 1.0;
     gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
     add(outputPlaca, gridBagConstraints);
 
@@ -137,26 +154,25 @@ public class PanelDetalheVeiculo extends javax.swing.JPanel {
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.gridx = 1;
     gridBagConstraints.gridy = 5;
+    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
     gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+    gridBagConstraints.weightx = 1.0;
     gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
     add(outputCNH, gridBagConstraints);
 
-    outputMotorista.setText("motorista");
+    outputMotorista.setText("----------");
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.gridx = 1;
     gridBagConstraints.gridy = 6;
+    gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
     gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+    gridBagConstraints.weightx = 1.0;
     gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
     add(outputMotorista, gridBagConstraints);
 
     jScrollPane1.setMinimumSize(new java.awt.Dimension(20, 150));
     jScrollPane1.setPreferredSize(new java.awt.Dimension(48, 150));
 
-    listaCarga.setModel(new javax.swing.AbstractListModel<String>() {
-      String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-      public int getSize() { return strings.length; }
-      public String getElementAt(int i) { return strings[i]; }
-    });
     listaCarga.setMinimumSize(new java.awt.Dimension(45, 100));
     listaCarga.setPreferredSize(new java.awt.Dimension(45, 100));
     jScrollPane1.setViewportView(listaCarga);
@@ -166,6 +182,7 @@ public class PanelDetalheVeiculo extends javax.swing.JPanel {
     gridBagConstraints.gridy = 8;
     gridBagConstraints.gridwidth = 2;
     gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
     gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
     add(jScrollPane1, gridBagConstraints);
 
@@ -179,21 +196,19 @@ public class PanelDetalheVeiculo extends javax.swing.JPanel {
     gridBagConstraints.insets = new java.awt.Insets(5, 3, 0, 3);
     add(jLabel14, gridBagConstraints);
 
-    jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/van.png"))); // NOI18N
+    outputIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/van.png"))); // NOI18N
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.gridx = 0;
     gridBagConstraints.gridy = 0;
     gridBagConstraints.gridwidth = 2;
     gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-    add(jLabel16, gridBagConstraints);
+    add(outputIcon, gridBagConstraints);
   }// </editor-fold>//GEN-END:initComponents
-
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JLabel jLabel1;
   private javax.swing.JLabel jLabel14;
   private javax.swing.JLabel jLabel15;
-  private javax.swing.JLabel jLabel16;
   private javax.swing.JLabel jLabel2;
   private javax.swing.JLabel jLabel3;
   private javax.swing.JLabel jLabel4;
@@ -204,9 +219,46 @@ public class PanelDetalheVeiculo extends javax.swing.JPanel {
   private javax.swing.JList<String> listaCarga;
   private javax.swing.JLabel outputAno;
   private javax.swing.JLabel outputCNH;
+  private javax.swing.JLabel outputIcon;
   private javax.swing.JLabel outputMarca;
   private javax.swing.JLabel outputModelo;
   private javax.swing.JLabel outputMotorista;
   private javax.swing.JLabel outputPlaca;
   // End of variables declaration//GEN-END:variables
+
+  public void atualizarInfoVeiculo(Veiculo veiculo) {
+    this.veiculo = veiculo;
+    outputAno.setText(veiculo.getAno().toString());
+    outputMarca.setText(veiculo.getMarca());
+    outputModelo.setText(veiculo.getModelo());
+    outputCNH.setText(veiculo.getCnhMinima().toString());
+
+    if (veiculo.getMotorista() != null) {
+      outputMotorista.setText(veiculo.getMotorista().getNome());
+    }
+
+    if (veiculo.getCarga() != null) {
+      listaCarga.setModel(new AbstractListModel<String>() {
+        @Override
+        public int getSize() {
+          return veiculo.getCarga().size();
+        }
+
+        @Override
+        public String getElementAt(int index) {
+          return veiculo.getCarga().get(index).toString();
+        }
+      });
+    }
+
+    if (veiculo instanceof CaminhaoBau) {
+      outputIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/caminhao-bau.png")));
+    } else if (veiculo instanceof Carreta) {
+      outputIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/carreta.png")));
+    } else if (veiculo instanceof Van) {
+      outputIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/van.png")));
+    }
+
+    repaint();
+  }
 }

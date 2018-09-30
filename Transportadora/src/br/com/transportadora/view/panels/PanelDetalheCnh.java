@@ -23,11 +23,13 @@ public class PanelDetalheCnh extends javax.swing.JPanel {
   public PanelDetalheCnh() {
     initComponents();
   }
-
-  public PanelDetalheCnh(Cnh cnh) {
-      initComponents();
-      this.cnh = cnh;
-      atualizarInformacoes();
+  
+  
+  public void atualizarInfoCnh(Cnh cnh) {
+    this.cnh = cnh;
+    lblNro.setText(this.cnh.getNumero());
+    lblTipo.setText(this.cnh.getClasse().toString());
+    this.repaint();
   }
 
   /**
@@ -87,9 +89,5 @@ public class PanelDetalheCnh extends javax.swing.JPanel {
   private javax.swing.JLabel lblNro;
   private javax.swing.JLabel lblTipo;
   // End of variables declaration//GEN-END:variables
-
-  private void atualizarInformacoes() {
-    lblNro.setText(cnh.getNumero());
-    lblTipo.setText(cnh.getClasse().toString());
-  }
+  
 }

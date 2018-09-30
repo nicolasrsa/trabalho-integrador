@@ -1,14 +1,15 @@
 package br.com.transportadora.view.panels;
 
-
 import br.com.transportadora.model.Motorista;
+import java.time.format.DateTimeFormatter;
+
 
 /**
  *
  * @author hatachi
  */
 public class PanelDetalheMotorista extends javax.swing.JPanel {
-  
+
   private Motorista motorista;
 
   /**
@@ -17,8 +18,15 @@ public class PanelDetalheMotorista extends javax.swing.JPanel {
   public PanelDetalheMotorista() {
     initComponents();
   }
-  
-  
+
+  public void atualizarInfoMotorista(Motorista motorista) {
+    this.motorista = motorista;
+    lblNome.setText(this.motorista.getNome());
+    lblNascimento.setText(this.motorista.getNascimento().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+    panelDetalheCnh1.atualizarInfoCnh(this.motorista.getCnh());
+    panelDetalheEndereco1.atualizarInfoEndereco(this.motorista.getEndereco());
+    repaint();
+  }
 
   /**
    * This method is called from within the constructor to initialize the form. WARNING: Do NOT modify this code. The
@@ -107,4 +115,5 @@ public class PanelDetalheMotorista extends javax.swing.JPanel {
   private br.com.transportadora.view.panels.PanelDetalheCnh panelDetalheCnh1;
   private br.com.transportadora.view.panels.PanelDetalheEndereco panelDetalheEndereco1;
   // End of variables declaration//GEN-END:variables
+
 }

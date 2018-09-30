@@ -6,6 +6,7 @@
 package br.com.transportadora.view.panels;
 
 import br.com.transportadora.model.ClasseCNH;
+import br.com.transportadora.model.Cnh;
 
 
 /**
@@ -83,4 +84,11 @@ public class PanelCadCnh extends javax.swing.JPanel {
   private javax.swing.JLabel jLabel1;
   private javax.swing.JLabel jLabel2;
   // End of variables declaration//GEN-END:variables
+
+  public Cnh gerarCnh() {
+    Cnh cnh = new Cnh();
+    cnh.setNumero(inputNroCNH.getText());
+    cnh.setClasse(inputTipoCNH.getItemAt(inputTipoCNH.getSelectedIndex()));
+    return cnh;
+  }
 }
