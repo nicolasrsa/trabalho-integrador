@@ -9,4 +9,15 @@ public class CaminhaoBau extends Veiculo {
   public CaminhaoBau() {
     super(CaminhaoBau.CAPACIDADE, CaminhaoBau.CNH_MINIMA);
   }
+
+  @Override
+  public boolean podeSerDirigidoPor(Motorista motorista) {
+    switch (motorista.getCnh().getClasse()) {
+      case B:
+      case C:
+        return true;
+      default:
+        return false;
+    }
+  }
 }

@@ -31,8 +31,6 @@ public class PanelListaMotoristas extends javax.swing.JPanel {
       detalheMotorista.atualizarInfoMotorista(motorista);
       add(detalheMotorista);
     }
-
-    repaint();
   }
 
   /**

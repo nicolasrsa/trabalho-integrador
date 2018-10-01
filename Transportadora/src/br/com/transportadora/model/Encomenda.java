@@ -1,6 +1,7 @@
 package br.com.transportadora.model;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 
 public class Encomenda implements Comparable<Encomenda> {
@@ -73,6 +74,24 @@ public class Encomenda implements Comparable<Encomenda> {
   @Override
   public String toString() {
     return codigo.toString();
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+    final Encomenda other = (Encomenda) obj;
+    if (!Objects.equals(this.codigo, other.codigo)) {
+      return false;
+    }
+    return true;
   }
 
   private String gerarCodigoValido() {

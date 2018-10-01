@@ -2,8 +2,11 @@ package br.com.transportadora.controller;
 
 import br.com.transportadora.model.Encomenda;
 import br.com.transportadora.model.Motorista;
+import br.com.transportadora.model.ProgramacaoDiaria;
 import br.com.transportadora.model.Transportadora;
 import br.com.transportadora.model.Veiculo;
+import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -43,6 +46,32 @@ public class TransportadoraController {
 
   public void salvarEncomenda(Encomenda encomenda) {
     Transportadora.getInstance().getEncomendas().add(0, encomenda);
+  }
+
+  public List<ProgramacaoDiaria> listarProgramacoesDiarias() {
+    return Transportadora.getInstance().getProgramacoesDiarias();
+  }
+
+  public void salvarProgramacaoDiaria(ProgramacaoDiaria programacaoDiaria) {
+    Transportadora.getInstance().getProgramacoesDiarias().add(programacaoDiaria);
+    Collections.sort(Transportadora.getInstance().getProgramacoesDiarias());
+  }
+
+  public boolean checarDataRoteiroValida(LocalDate data) {
+    for (ProgramacaoDiaria programacaoDiaria : listarProgramacoesDiarias()) {
+      if (programacaoDiaria.getData().equals(data)) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  public void gerarProgramacaoDiaria(LocalDate data) throws RoteiroDiarioDuplicadoException {
+    if (checarDataRoteiroValida(data)) {
+      Transportadora.getInstance().gerarRoteirosParaODia(data);
+    } else {
+      throw new RoteiroDiarioDuplicadoException();
+    }
   }
 
 }

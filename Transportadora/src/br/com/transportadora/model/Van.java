@@ -9,4 +9,15 @@ public class Van extends Veiculo {
   public Van() {
     super(Van.CAPACIDADE, Van.CNH_MINIMA);
   }
+
+  @Override
+  public boolean podeSerDirigidoPor(Motorista motorista) {
+    switch (motorista.getCnh().getClasse()) {
+      case B:
+      case C:
+        return true;
+      default:
+        return false;
+    }
+  }
 }

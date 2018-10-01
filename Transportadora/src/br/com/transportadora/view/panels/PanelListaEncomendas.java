@@ -7,6 +7,8 @@ package br.com.transportadora.view.panels;
 
 import br.com.transportadora.controller.TransportadoraController;
 import br.com.transportadora.model.Encomenda;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 
 
 /**
@@ -15,11 +17,14 @@ import br.com.transportadora.model.Encomenda;
  */
 public class PanelListaEncomendas extends javax.swing.JPanel {
 
+  private GridBagConstraints gbc = new GridBagConstraints();
+
   /**
    * Creates new form PanelListaEncomendas
    */
   public PanelListaEncomendas() {
     initComponents();
+    configurarGridBagConstraints();
     atualizarListaEncomendas();
   }
 
@@ -29,10 +34,8 @@ public class PanelListaEncomendas extends javax.swing.JPanel {
     for (Encomenda encomenda : TransportadoraController.getInstance().listarEncomendas()) {
       PanelDetalheEncomenda detalheEncomenda = new PanelDetalheEncomenda();
       detalheEncomenda.atualizarInfoEncomenda(encomenda);
-      add(detalheEncomenda);
+      add(detalheEncomenda, gbc);
     }
-
-    repaint();
   }
 
   /**
@@ -43,8 +46,17 @@ public class PanelListaEncomendas extends javax.swing.JPanel {
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
   private void initComponents() {
 
-    setLayout(new java.awt.GridLayout(0, 1, 10, 10));
+    setLayout(new java.awt.GridBagLayout());
   }// </editor-fold>//GEN-END:initComponents
+
+  private void configurarGridBagConstraints() {
+    gbc.anchor = GridBagConstraints.PAGE_START;
+    gbc.gridy = GridBagConstraints.RELATIVE;
+    gbc.gridx = 0;
+    gbc.weightx = 1.0;
+    gbc.insets = new Insets(10, 10, 10, 10);
+    gbc.fill = GridBagConstraints.HORIZONTAL;
+  }
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   // End of variables declaration//GEN-END:variables

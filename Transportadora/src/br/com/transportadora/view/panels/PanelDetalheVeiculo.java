@@ -258,7 +258,5 @@ public class PanelDetalheVeiculo extends javax.swing.JPanel {
     } else if (veiculo instanceof Van) {
       outputIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/van.png")));
     }
-
-    repaint();
   }
 }

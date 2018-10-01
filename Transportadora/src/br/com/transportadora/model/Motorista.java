@@ -5,10 +5,13 @@ import java.time.LocalDate;
 
 public class Motorista extends Pessoa {
 
+  private static long proxCodigo = 1;
+
   private Roteiro roteiro;
   private Veiculo veiculo;
   private Cnh cnh;
   private LocalDate nascimento;
+  private long codigo = proxCodigo++;
 
   public Motorista() {
   }
@@ -51,6 +54,24 @@ public class Motorista extends Pessoa {
 
   public void setNascimento(LocalDate nascimento) {
     this.nascimento = nascimento;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+    final Motorista other = (Motorista) obj;
+    if (this.codigo != other.codigo) {
+      return false;
+    }
+    return true;
   }
 
 }

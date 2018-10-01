@@ -237,7 +237,5 @@ public class PanelDetalheEncomenda extends javax.swing.JPanel {
       default:
         break;
     }
-
-    repaint();
   }
 }

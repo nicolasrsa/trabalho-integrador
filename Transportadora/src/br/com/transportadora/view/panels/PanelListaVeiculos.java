@@ -31,8 +31,6 @@ public class PanelListaVeiculos extends javax.swing.JPanel {
       detalheVeiculo.atualizarInfoVeiculo(veiculo);
       add(detalheVeiculo);
     }
-
-    repaint();
   }
 
   /**

@@ -25,7 +25,6 @@ public class PanelDetalheMotorista extends javax.swing.JPanel {
     lblNascimento.setText(this.motorista.getNascimento().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
     panelDetalheCnh1.atualizarInfoCnh(this.motorista.getCnh());
     panelDetalheEndereco1.atualizarInfoEndereco(this.motorista.getEndereco());
-    repaint();
   }
 
   /**
@@ -104,7 +103,6 @@ public class PanelDetalheMotorista extends javax.swing.JPanel {
     gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
     add(panelDetalheCnh1, gridBagConstraints);
   }// </editor-fold>//GEN-END:initComponents
-
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JLabel jLabel1;

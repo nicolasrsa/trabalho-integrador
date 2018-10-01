@@ -29,7 +29,6 @@ public class PanelDetalheEndereco extends javax.swing.JPanel {
     lblCidade.setText(this.endereco.getCidade());
     lblEstado.setText(this.endereco.getEstado().getDescricao());
     lblCep.setText(this.endereco.getCep());
-    repaint();
   }
 
   /**
@@ -181,7 +180,6 @@ public class PanelDetalheEndereco extends javax.swing.JPanel {
     gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
     add(lblEstado, gridBagConstraints);
   }// </editor-fold>//GEN-END:initComponents
-
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JLabel jLabel1;

@@ -68,6 +68,10 @@ public abstract class Veiculo {
     return carga;
   }
 
+  public Integer getCargaMax() {
+    return cargaMax;
+  }
+
   public Boolean adicionarEncomenda(Encomenda encomenda) {
     if (this.carga.size() < this.cargaMax) {
       this.carga.add(encomenda);
@@ -75,4 +79,6 @@ public abstract class Veiculo {
     }
     return false;
   }
+
+  public abstract boolean podeSerDirigidoPor(Motorista motorista);
 }

@@ -13,23 +13,20 @@ import br.com.transportadora.model.Cnh;
  * @author hatachi
  */
 public class PanelDetalheCnh extends javax.swing.JPanel {
-  
+
   private Cnh cnh;
 
   /**
    * Creates new form PanelDetalheCnh
    */
-  
   public PanelDetalheCnh() {
     initComponents();
   }
-  
-  
+
   public void atualizarInfoCnh(Cnh cnh) {
     this.cnh = cnh;
     lblNro.setText(this.cnh.getNumero());
     lblTipo.setText(this.cnh.getClasse().toString());
-    this.repaint();
   }
 
   /**
@@ -82,12 +79,11 @@ public class PanelDetalheCnh extends javax.swing.JPanel {
     add(lblTipo, gridBagConstraints);
   }// </editor-fold>//GEN-END:initComponents
 
-
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JLabel jLabel1;
   private javax.swing.JLabel jLabel2;
   private javax.swing.JLabel lblNro;
   private javax.swing.JLabel lblTipo;
   // End of variables declaration//GEN-END:variables
-  
+
 }

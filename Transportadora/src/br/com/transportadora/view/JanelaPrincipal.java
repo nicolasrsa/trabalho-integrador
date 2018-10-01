@@ -5,13 +5,17 @@
  */
 package br.com.transportadora.view;
 
+import br.com.transportadora.controller.RoteiroDiarioDuplicadoException;
 import br.com.transportadora.controller.TransportadoraController;
 import br.com.transportadora.model.Encomenda;
 import br.com.transportadora.model.Motorista;
 import br.com.transportadora.model.Veiculo;
 import br.com.transportadora.view.dialogs.DialogCadMotorista;
 import br.com.transportadora.view.dialogs.DialogCadVeiculo;
+import br.com.transportadora.view.dialogs.DialogGerarRoteiro;
 import br.com.transportadora.view.dialogs.DialogoCadEncomenda;
+import java.time.LocalDate;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -27,6 +31,13 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     initComponents();
     //ImageIcon img = new ImageIcon(getClass().getResource("/images/icon_small.png"));
     //setIconImage(img.getImage());
+  }
+
+  public void atualizarComponentes() {
+    panelListaEncomendas1.atualizarListaEncomendas();
+    panelListaMotoristas.atualizarListaMotoristas();
+    panelListaRoteiros1.configurarListaRoteiros();
+    panelListaVeiculos1.atualizarListaVeiculos();
   }
 
   /**
@@ -45,6 +56,8 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     panelListaVeiculos1 = new br.com.transportadora.view.panels.PanelListaVeiculos();
     jScrollPane3 = new javax.swing.JScrollPane();
     panelListaEncomendas1 = new br.com.transportadora.view.panels.PanelListaEncomendas();
+    jScrollPane4 = new javax.swing.JScrollPane();
+    panelListaRoteiros1 = new br.com.transportadora.view.panels.PanelListaRoteiros();
     jMenuBar1 = new javax.swing.JMenuBar();
     jMenu1 = new javax.swing.JMenu();
     jMenuItem1 = new javax.swing.JMenuItem();
@@ -52,7 +65,6 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     jMenuItem3 = new javax.swing.JMenuItem();
     jMenu2 = new javax.swing.JMenu();
     jMenuItem4 = new javax.swing.JMenuItem();
-    jMenuItem5 = new javax.swing.JMenuItem();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setTitle("Transportadora");
@@ -67,9 +79,14 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 
     panelTabs.addTab("Veículos", jScrollPane2);
 
+    panelListaEncomendas1.setLayout(new java.awt.GridLayout(0, 1, 10, 10));
     jScrollPane3.setViewportView(panelListaEncomendas1);
 
     panelTabs.addTab("Encomendas", jScrollPane3);
+
+    jScrollPane4.setViewportView(panelListaRoteiros1);
+
+    panelTabs.addTab("Roteiros", jScrollPane4);
 
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
@@ -109,10 +126,12 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     jMenu2.setText("Roteiros");
 
     jMenuItem4.setText("Gerar Roteiro Diário");
+    jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jMenuItem4ActionPerformed(evt);
+      }
+    });
     jMenu2.add(jMenuItem4);
-
-    jMenuItem5.setText("jMenuItem5");
-    jMenu2.add(jMenuItem5);
 
     jMenuBar1.add(jMenu2);
 
@@ -134,6 +153,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     Veiculo veiculo = dialog.gerarVeiculo();
     TransportadoraController.getInstance().salvarVeiculo(veiculo);
     panelListaVeiculos1.atualizarListaVeiculos();
+    panelTabs.setEnabledAt(1, true);
   }//GEN-LAST:event_jMenuItem1ActionPerformed
 
   private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
@@ -153,6 +173,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 
     TransportadoraController.getInstance().salvarMotorista(motorista);
     panelListaMotoristas.atualizarListaMotoristas();
+    panelTabs.setEnabledAt(0, true);
   }//GEN-LAST:event_jMenuItem2ActionPerformed
 
   private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
@@ -167,7 +188,27 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     Encomenda encomenda = dialogo.gerarEncomenda();
     TransportadoraController.getInstance().salvarEncomenda(encomenda);
     panelListaEncomendas1.atualizarListaEncomendas();
+    panelTabs.setEnabledAt(2, true);
   }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+  private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+    // TODO add your handling code here:
+    DialogGerarRoteiro dialogo = new DialogGerarRoteiro(this, true);
+    dialogo.setVisible(true);
+
+    if (!dialogo.isSalvo()) {
+      return;
+    }
+
+    LocalDate data = dialogo.getData();
+    try {
+      TransportadoraController.getInstance().gerarProgramacaoDiaria(data);
+    } catch (RoteiroDiarioDuplicadoException ex) {
+      JOptionPane.showMessageDialog(null, "Já foi gerado um roteiro diário para essa data");
+    }
+    panelListaRoteiros1.configurarListaRoteiros();
+    panelTabs.setEnabledAt(3, true);
+  }//GEN-LAST:event_jMenuItem4ActionPerformed
 
   /**
    * @param args the command line arguments
@@ -212,12 +253,13 @@ public class JanelaPrincipal extends javax.swing.JFrame {
   private javax.swing.JMenuItem jMenuItem2;
   private javax.swing.JMenuItem jMenuItem3;
   private javax.swing.JMenuItem jMenuItem4;
-  private javax.swing.JMenuItem jMenuItem5;
   private javax.swing.JScrollPane jScrollPane1;
   private javax.swing.JScrollPane jScrollPane2;
   private javax.swing.JScrollPane jScrollPane3;
+  private javax.swing.JScrollPane jScrollPane4;
   private br.com.transportadora.view.panels.PanelListaEncomendas panelListaEncomendas1;
   private br.com.transportadora.view.panels.PanelListaMotoristas panelListaMotoristas;
+  private br.com.transportadora.view.panels.PanelListaRoteiros panelListaRoteiros1;
   private br.com.transportadora.view.panels.PanelListaVeiculos panelListaVeiculos1;
   private javax.swing.JTabbedPane panelTabs;
   // End of variables declaration//GEN-END:variables
