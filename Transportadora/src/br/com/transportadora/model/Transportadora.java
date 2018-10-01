@@ -2,6 +2,7 @@ package br.com.transportadora.model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -106,6 +107,9 @@ public class Transportadora {
     List<Encomenda> encomendasNaoEntregues = encomendasNaoEntregues();
     List<Motorista> motoristasDisponiveis = motoristasDisponiveisParaRoteiro();
     List<Roteiro> roteiros = new ArrayList<>();
+
+    Collections.sort(encomendasNaoEntregues);
+    Collections.reverse(encomendasNaoEntregues);
 
     for (Veiculo veiculo : this.veiculos) {
       Motorista motorista = buscarMotoristaParaVeiculo(motoristasDisponiveis, veiculo);

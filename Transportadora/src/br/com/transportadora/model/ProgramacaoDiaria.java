@@ -52,4 +52,26 @@ public class ProgramacaoDiaria implements Comparable<ProgramacaoDiaria> {
     return data.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
   }
 
+  public void registrarEntregaRealizada(String codigoEncomenda) {
+    for (Roteiro roteiro : getRoteiros()) {
+      for (Encomenda encomenda : roteiro.getEncomendas()) {
+        if (encomenda.getCodigo().equals(codigoEncomenda)) {
+          roteiro.resgistrarEntregaRealizada(codigoEncomenda);
+          return;
+        }
+      }
+    }
+  }
+
+  public void registrarEntregaNaoRealizada(String codigoEncomenda) {
+    for (Roteiro roteiro : getRoteiros()) {
+      for (Encomenda encomenda : roteiro.getEncomendas()) {
+        if (encomenda.getCodigo().equals(codigoEncomenda)) {
+          roteiro.resgistrarEntregaNaoRealizada(codigoEncomenda);
+          return;
+        }
+      }
+    }
+  }
+
 }

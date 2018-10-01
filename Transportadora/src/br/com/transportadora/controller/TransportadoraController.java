@@ -3,6 +3,7 @@ package br.com.transportadora.controller;
 import br.com.transportadora.model.Encomenda;
 import br.com.transportadora.model.Motorista;
 import br.com.transportadora.model.ProgramacaoDiaria;
+import br.com.transportadora.model.Roteiro;
 import br.com.transportadora.model.Transportadora;
 import br.com.transportadora.model.Veiculo;
 import java.time.LocalDate;
@@ -72,6 +73,36 @@ public class TransportadoraController {
     } else {
       throw new RoteiroDiarioDuplicadoException();
     }
+  }
+
+  public void registrarEntrega(ProgramacaoDiaria programacaoDiaria, String codigoEncomenda) throws CodigoEncomendaInvalidoException {
+    if (!this.checarCodigoRoteiroValido(programacaoDiaria, codigoEncomenda)) {
+      throw new CodigoEncomendaInvalidoException();
+    }
+    programacaoDiaria.registrarEntregaRealizada(codigoEncomenda);
+  }
+
+  public void registrarEntregaNaoRealizada(ProgramacaoDiaria programacaoDiaria, String codigoEncomenda) throws CodigoEncomendaInvalidoException {
+    if (!this.checarCodigoRoteiroValido(programacaoDiaria, codigoEncomenda)) {
+      throw new CodigoEncomendaInvalidoException();
+    }
+    programacaoDiaria.registrarEntregaNaoRealizada(codigoEncomenda);
+  }
+
+  private boolean checarCodigoRoteiroValido(ProgramacaoDiaria programacaoDiaria, String codigoEncomenda) {
+    if (codigoEncomenda == null) {
+      return false;
+    }
+
+    for (Roteiro roteiro : programacaoDiaria.getRoteiros()) {
+      for (Encomenda encomenda : roteiro.getEncomendas()) {
+        if (encomenda.getCodigo().equals(codigoEncomenda)) {
+          return true;
+        }
+      }
+    }
+
+    return false;
   }
 
 }

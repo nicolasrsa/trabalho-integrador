@@ -89,7 +89,7 @@ public class Roteiro {
     return false;
   }
 
-  private Encomenda buscarEncomendaPorCodigo(String codigo) {
+  public Encomenda buscarEncomendaPorCodigo(String codigo) {
     Encomenda encomenda = null;
     for (Encomenda e : encomendas) {
       if (e.getCodigo().equals(encomenda.getCodigo())) {
