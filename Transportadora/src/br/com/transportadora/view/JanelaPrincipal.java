@@ -164,7 +164,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     Veiculo veiculo = dialog.gerarVeiculo();
     TransportadoraController.getInstance().cadastrarVeiculo(veiculo);
     panelTabs.setSelectedIndex(1);
-    atualizarComponentes();
+    panelListaVeiculos1.atualizarListaVeiculos();
   }//GEN-LAST:event_jMenuItem1ActionPerformed
 
   private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
@@ -184,7 +184,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 
     TransportadoraController.getInstance().cadastrarMotorista(motorista);
     panelTabs.setSelectedIndex(0);
-    atualizarComponentes();
+    panelListaMotoristas.atualizarListaMotoristas();
   }//GEN-LAST:event_jMenuItem2ActionPerformed
 
   private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
@@ -199,7 +199,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     Encomenda encomenda = dialogo.gerarEncomenda();
     TransportadoraController.getInstance().cadastrarEncomenda(encomenda);
     panelTabs.setSelectedIndex(2);
-    atualizarComponentes();
+    panelListaEncomendas1.atualizarListaEncomendas();
   }//GEN-LAST:event_jMenuItem3ActionPerformed
 
   private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
