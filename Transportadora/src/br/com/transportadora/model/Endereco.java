@@ -80,4 +80,10 @@ public class Endereco {
     this.cep = cep;
   }
 
+  @Override
+  public String toString() {
+    return "Rua:" + rua + "\nNúmero: " + numero + "\nComplemento: " + complemento + "\nBairro: " + bairro + "\nCidade: "
+            + cidade + "\nEstado: " + estado + "\nCep: " + cep;
+  }
+
 }

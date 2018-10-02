@@ -3,7 +3,7 @@ package br.com.transportadora.model;
 import java.time.LocalDate;
 
 
-public class Motorista extends Pessoa {
+public class Motorista extends Pessoa implements Comparable<Motorista> {
 
   private static long proxCodigo = 1;
 
@@ -72,6 +72,11 @@ public class Motorista extends Pessoa {
       return false;
     }
     return true;
+  }
+
+  @Override
+  public int compareTo(Motorista o) {
+    return this.getCnh().getClasse().compareTo(o.getCnh().getClasse());
   }
 
 }

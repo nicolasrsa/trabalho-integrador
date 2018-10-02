@@ -14,13 +14,13 @@ public class Transportadora {
   private List<Motorista> motoristas;
   private List<Veiculo> veiculos;
   private List<Encomenda> encomendas;
-  private List<ProgramacaoDiaria> programacoesDiarias;
+  private List<RoteiroDiario> roteirosDiarios;
 
   private Transportadora() {
     motoristas = new ArrayList<>();
     veiculos = new ArrayList<>();
     encomendas = new LinkedList<>();
-    programacoesDiarias = new LinkedList<>();
+    roteirosDiarios = new LinkedList<>();
   }
 
   public static Transportadora getInstance() {
@@ -30,20 +30,37 @@ public class Transportadora {
     return instance;
   }
 
+  public void cadastrarMotorista(Motorista motorista) {
+    this.motoristas.add(motorista);
+    Collections.sort(motoristas);
+    Collections.reverse(motoristas);
+  }
+
   public List<Motorista> getMotoristas() {
     return motoristas;
+  }
+
+  public void cadastrarVeiculo(Veiculo veiculo) {
+    this.veiculos.add(veiculo);
+    Collections.sort(veiculos);
+    Collections.reverse(veiculos);
   }
 
   public List<Veiculo> getVeiculos() {
     return veiculos;
   }
 
+  public void cadastrarEncomenda(Encomenda encomenda) {
+    this.encomendas.add(encomenda);
+    Collections.sort(encomendas);
+  }
+
   public List<Encomenda> getEncomendas() {
     return encomendas;
   }
 
-  public List<ProgramacaoDiaria> getProgramacoesDiarias() {
-    return programacoesDiarias;
+  public List<RoteiroDiario> getRoteirosDiarios() {
+    return roteirosDiarios;
   }
 
   public boolean codigoJaExiste(String codigo) {
@@ -103,45 +120,34 @@ public class Transportadora {
     return encomendas;
   }
 
-  public void gerarRoteirosParaODia(LocalDate data) {
+  public void gerarRoteirosDiarios(LocalDate data) {
     List<Encomenda> encomendasNaoEntregues = encomendasNaoEntregues();
     List<Motorista> motoristasDisponiveis = motoristasDisponiveisParaRoteiro();
-    List<Roteiro> roteiros = new ArrayList<>();
-
-    Collections.sort(encomendasNaoEntregues);
-    Collections.reverse(encomendasNaoEntregues);
+    List<Roteiro> roteiros = new LinkedList<>();
 
     for (Veiculo veiculo : this.veiculos) {
       Motorista motorista = buscarMotoristaParaVeiculo(motoristasDisponiveis, veiculo);
       if (motorista != null) {
         motoristasDisponiveis.remove(motorista);
-        Roteiro roteiro = new Roteiro(data, motorista, veiculo);
-        for (int i = 0; i < roteiro.getVeiculo().getCargaMax() && encomendasNaoEntregues().size() > 0; i++) {
-          Encomenda encomenda = encomendasNaoEntregues.get(0);
-          roteiro.adicionarEncomenda(encomenda);
-          encomendasNaoEntregues.remove(encomenda);
+        if (encomendasNaoEntregues.size() > 0) {
+          Roteiro roteiro = new Roteiro(data, motorista, veiculo);
+          for (int i = 0; i < roteiro.getVeiculo().getCapacidadeDeCarga() && encomendasNaoEntregues.size() > 0; i++) {
+            Encomenda encomenda = encomendasNaoEntregues.get(0);
+            roteiro.alocarEncomenda(encomenda);
+            encomendasNaoEntregues.remove(encomenda);
+          }
+          roteiros.add(roteiro);
         }
-        roteiros.add(roteiro);
       }
     }
 
-    this.programacoesDiarias.add(new ProgramacaoDiaria(data, roteiros));
+    this.roteirosDiarios.add(new RoteiroDiario(data, roteiros));
   }
 
   private List<Motorista> motoristasDisponiveisParaRoteiro() {
     List<Motorista> motoristas = new ArrayList<>();
     for (Motorista motorista : this.motoristas) {
       motoristas.add(motorista);
-    }
-    return motoristas;
-  }
-
-  private List<Motorista> motoristasComCnhClasseC() {
-    List<Motorista> motoristas = new ArrayList<>();
-    for (Motorista motorista : this.motoristas) {
-      if (motorista.getCnh().getClasse().equals(ClasseCNH.C)) {
-        motoristas.add(motorista);
-      }
     }
     return motoristas;
   }
@@ -154,4 +160,5 @@ public class Transportadora {
     }
     return null;
   }
+
 }

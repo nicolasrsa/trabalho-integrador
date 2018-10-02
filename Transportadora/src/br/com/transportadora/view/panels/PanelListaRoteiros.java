@@ -5,17 +5,10 @@
  */
 package br.com.transportadora.view.panels;
 
-import br.com.transportadora.controller.CodigoEncomendaInvalidoException;
 import br.com.transportadora.controller.TransportadoraController;
-import br.com.transportadora.model.CaminhaoBau;
-import br.com.transportadora.model.Encomenda;
-import br.com.transportadora.model.ProgramacaoDiaria;
-import br.com.transportadora.model.Roteiro;
-import br.com.transportadora.model.Van;
-import br.com.transportadora.model.Veiculo;
+import br.com.transportadora.model.RoteiroDiario;
 import java.util.List;
 import javax.swing.DefaultListModel;
-import javax.swing.JOptionPane;
 
 
 /**
@@ -24,14 +17,14 @@ import javax.swing.JOptionPane;
  */
 public class PanelListaRoteiros extends javax.swing.JPanel {
 
-  List<ProgramacaoDiaria> programacoesDiarias;
+  List<RoteiroDiario> roteirosDiarios;
 
   /**
    * Creates new form PanelListaRoteiros
    */
   public PanelListaRoteiros() {
     initComponents();
-    configurarListaRoteiros();
+    configurarListaRoteirosDiarios();
   }
 
   /**
@@ -46,13 +39,11 @@ public class PanelListaRoteiros extends javax.swing.JPanel {
     jPanel1 = new javax.swing.JPanel();
     jLabel1 = new javax.swing.JLabel();
     jScrollPane1 = new javax.swing.JScrollPane();
-    jlistProgramacoesDiarias = new javax.swing.JList<>();
+    listRoteirosDiarios = new javax.swing.JList<>();
+    jButton1 = new javax.swing.JButton();
     jSeparator1 = new javax.swing.JSeparator();
     panelExibicaoRoteiros = new javax.swing.JPanel();
-    jScrollPane2 = new javax.swing.JScrollPane();
-    outputRelatorioRoteiro = new javax.swing.JTextArea();
-    btnRegistroEntrega = new javax.swing.JButton();
-    btnRegistroNaoEntrega = new javax.swing.JButton();
+    panelDetalheRoteiroDiario1 = new br.com.transportadora.view.panels.PanelDetalheRoteiroDiario();
 
     setLayout(new java.awt.GridBagLayout());
 
@@ -68,14 +59,14 @@ public class PanelListaRoteiros extends javax.swing.JPanel {
     jScrollPane1.setMinimumSize(new java.awt.Dimension(100, 200));
     jScrollPane1.setPreferredSize(new java.awt.Dimension(100, 200));
 
-    jlistProgramacoesDiarias.setMinimumSize(new java.awt.Dimension(100, 200));
-    jlistProgramacoesDiarias.setPreferredSize(new java.awt.Dimension(100, 200));
-    jlistProgramacoesDiarias.addMouseListener(new java.awt.event.MouseAdapter() {
+    listRoteirosDiarios.setMinimumSize(new java.awt.Dimension(100, 200));
+    listRoteirosDiarios.setPreferredSize(new java.awt.Dimension(100, 200));
+    listRoteirosDiarios.addMouseListener(new java.awt.event.MouseAdapter() {
       public void mouseClicked(java.awt.event.MouseEvent evt) {
-        jlistProgramacoesDiariasMouseClicked(evt);
+        listRoteirosDiariosMouseClicked(evt);
       }
     });
-    jScrollPane1.setViewportView(jlistProgramacoesDiarias);
+    jScrollPane1.setViewportView(listRoteirosDiarios);
 
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.gridx = 0;
@@ -86,6 +77,19 @@ public class PanelListaRoteiros extends javax.swing.JPanel {
     gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
     jPanel1.add(jScrollPane1, gridBagConstraints);
 
+    jButton1.setText("Fechar");
+    jButton1.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton1ActionPerformed(evt);
+      }
+    });
+    gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 0;
+    gridBagConstraints.gridy = 2;
+    gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
+    gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+    jPanel1.add(jButton1, gridBagConstraints);
+
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
     gridBagConstraints.weighty = 1.0;
@@ -94,168 +98,67 @@ public class PanelListaRoteiros extends javax.swing.JPanel {
 
     jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
     gridBagConstraints = new java.awt.GridBagConstraints();
+    gridBagConstraints.gridx = 1;
+    gridBagConstraints.gridy = 0;
+    gridBagConstraints.gridheight = 2;
     gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
     gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_START;
     add(jSeparator1, gridBagConstraints);
 
-    panelExibicaoRoteiros.setLayout(new java.awt.GridBagLayout());
-
-    outputRelatorioRoteiro.setColumns(20);
-    outputRelatorioRoteiro.setRows(5);
-    jScrollPane2.setViewportView(outputRelatorioRoteiro);
-
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-    gridBagConstraints.weightx = 1.0;
-    gridBagConstraints.weighty = 1.0;
-    panelExibicaoRoteiros.add(jScrollPane2, gridBagConstraints);
+    panelExibicaoRoteiros.setLayout(new java.awt.BorderLayout());
+    panelExibicaoRoteiros.add(panelDetalheRoteiroDiario1, java.awt.BorderLayout.CENTER);
 
     gridBagConstraints = new java.awt.GridBagConstraints();
     gridBagConstraints.gridx = 2;
     gridBagConstraints.gridy = 0;
-    gridBagConstraints.gridwidth = 2;
+    gridBagConstraints.gridheight = 2;
     gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
     gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_START;
     gridBagConstraints.weightx = 1.0;
     gridBagConstraints.weighty = 1.0;
     gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
     add(panelExibicaoRoteiros, gridBagConstraints);
-
-    btnRegistroEntrega.setText("Registrar encomenda entregue");
-    btnRegistroEntrega.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        btnRegistroEntregaActionPerformed(evt);
-      }
-    });
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 2;
-    gridBagConstraints.gridy = 1;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-    gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-    add(btnRegistroEntrega, gridBagConstraints);
-
-    btnRegistroNaoEntrega.setText("Registrar encomenda não entregue");
-    btnRegistroNaoEntrega.addActionListener(new java.awt.event.ActionListener() {
-      public void actionPerformed(java.awt.event.ActionEvent evt) {
-        btnRegistroNaoEntregaActionPerformed(evt);
-      }
-    });
-    gridBagConstraints = new java.awt.GridBagConstraints();
-    gridBagConstraints.gridx = 3;
-    gridBagConstraints.gridy = 1;
-    gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-    gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-    add(btnRegistroNaoEntrega, gridBagConstraints);
   }// </editor-fold>//GEN-END:initComponents
 
-  private void jlistProgramacoesDiariasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlistProgramacoesDiariasMouseClicked
+  private void listRoteirosDiariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listRoteirosDiariosMouseClicked
     // TODO add your handling code here:
-    ProgramacaoDiaria programacaoSelecionada = jlistProgramacoesDiarias.getSelectedValue();
+    RoteiroDiario roteiroDiarioSelecionado = listRoteirosDiarios.getSelectedValue();
 
-    if (programacaoSelecionada == null) {
+    if (roteiroDiarioSelecionado == null) {
       return;
     }
+    panelDetalheRoteiroDiario1.setVisible(true);
+    panelDetalheRoteiroDiario1.configurarInformacoes(roteiroDiarioSelecionado);
+  }//GEN-LAST:event_listRoteirosDiariosMouseClicked
 
-    outputRelatorioRoteiro.setText(gerarRelatorioProgramacaoDoDia(programacaoSelecionada));
-  }//GEN-LAST:event_jlistProgramacoesDiariasMouseClicked
-
-    private void btnRegistroEntregaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroEntregaActionPerformed
+  private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
     // TODO add your handling code here:
-    ProgramacaoDiaria programacaoSelecionada = jlistProgramacoesDiarias.getSelectedValue();
-
-    if (programacaoSelecionada == null) {
-      JOptionPane.showMessageDialog(null, "Selecione um roteiro");
-      return;
-    }
-
-    String codigoEncomenda = JOptionPane.showInputDialog("Informe o código da encomenda");
-    try {
-      TransportadoraController.getInstance().registrarEntrega(programacaoSelecionada, codigoEncomenda);
-    } catch (CodigoEncomendaInvalidoException ex) {
-      JOptionPane.showMessageDialog(null, "Código da encomenda é inválido");
-    }
-    }//GEN-LAST:event_btnRegistroEntregaActionPerformed
-
-  private void btnRegistroNaoEntregaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroNaoEntregaActionPerformed
-    // TODO add your handling code here:
-    ProgramacaoDiaria programacaoSelecionada = jlistProgramacoesDiarias.getSelectedValue();
-
-    if (programacaoSelecionada == null) {
-      JOptionPane.showMessageDialog(null, "Selecione um roteiro");
-      return;
-    }
-
-    String codigoEncomenda = JOptionPane.showInputDialog("Informe o código da encomenda");
-    try {
-      TransportadoraController.getInstance().registrarEntregaNaoRealizada(programacaoSelecionada, codigoEncomenda);
-    } catch (CodigoEncomendaInvalidoException ex) {
-      JOptionPane.showMessageDialog(null, "Código da encomenda é inválido");
-    }
-  }//GEN-LAST:event_btnRegistroNaoEntregaActionPerformed
+    panelDetalheRoteiroDiario1.setVisible(false);
+  }//GEN-LAST:event_jButton1ActionPerformed
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
-  private javax.swing.JButton btnRegistroEntrega;
-  private javax.swing.JButton btnRegistroNaoEntrega;
+  private javax.swing.JButton jButton1;
   private javax.swing.JLabel jLabel1;
   private javax.swing.JPanel jPanel1;
   private javax.swing.JScrollPane jScrollPane1;
-  private javax.swing.JScrollPane jScrollPane2;
   private javax.swing.JSeparator jSeparator1;
-  private javax.swing.JList<ProgramacaoDiaria> jlistProgramacoesDiarias;
-  private javax.swing.JTextArea outputRelatorioRoteiro;
+  private javax.swing.JList<br.com.transportadora.model.RoteiroDiario> listRoteirosDiarios;
+  private br.com.transportadora.view.panels.PanelDetalheRoteiroDiario panelDetalheRoteiroDiario1;
   private javax.swing.JPanel panelExibicaoRoteiros;
   // End of variables declaration//GEN-END:variables
 
-  public void configurarListaRoteiros() {
-    jlistProgramacoesDiarias.removeAll();
-    outputRelatorioRoteiro.setText("");
-    this.programacoesDiarias = TransportadoraController.getInstance().listarProgramacoesDiarias();
-    this.jlistProgramacoesDiarias.setModel(listModelProgramacoesDiarias());
-    repaint();
+  public void configurarListaRoteirosDiarios() {
+    listRoteirosDiarios.removeAll();
+    this.roteirosDiarios = TransportadoraController.getInstance().listarRoteirosDiarios();
+    this.listRoteirosDiarios.setModel(listModelRoteiroDiario());
   }
 
-  private DefaultListModel<ProgramacaoDiaria> listModelProgramacoesDiarias() {
-    DefaultListModel<ProgramacaoDiaria> listModel = new DefaultListModel<>();
-    for (ProgramacaoDiaria programacoesDiaria : programacoesDiarias) {
-      listModel.add(0, programacoesDiaria);
+  private DefaultListModel<RoteiroDiario> listModelRoteiroDiario() {
+    DefaultListModel<RoteiroDiario> listModel = new DefaultListModel<>();
+    for (RoteiroDiario roteiroDiario : roteirosDiarios) {
+      listModel.add(0, roteiroDiario);
     }
     return listModel;
-  }
-
-  private String gerarRelatorioProgramacaoDoDia(ProgramacaoDiaria programacaoSelecionada) {
-    String texto = "Programação Diária " + programacaoSelecionada.toString() + "\n";
-
-    for (Roteiro roteiro : programacaoSelecionada.getRoteiros()) {
-      texto += "\n\n================================\n\n";
-      texto += "=> Veículo: " + definirTipoVeiculo(roteiro.getVeiculo()) + "\n";
-      texto += "Marca: " + roteiro.getVeiculo().getMarca() + "\n";
-      texto += "Modelo: " + roteiro.getVeiculo().getModelo() + "\n";
-      texto += "Placa: " + roteiro.getVeiculo().getPlaca() + "\n\n";
-
-      texto += "=> Motorista:" + "\n";
-      texto += "Nome: " + roteiro.getMotorista().getNome() + "\n";
-      texto += "Número CNH: " + roteiro.getMotorista().getCnh().getNumero() + "\n";
-      texto += "Classe CNH: " + roteiro.getMotorista().getCnh().getClasse().toString() + "\n\n";
-
-      texto += "=> Encomendas: \n";
-      for (Encomenda encomenda : roteiro.getEncomendas()) {
-        texto += encomenda.getCodigo() + "\n";
-      }
-
-      texto += "\n\n";
-    }
-
-    return texto;
-  }
-
-  private String definirTipoVeiculo(Veiculo veiculo) {
-    if (veiculo instanceof Van) {
-      return "Van";
-    } else if (veiculo instanceof CaminhaoBau) {
-      return "Caminhão Baú";
-    } else {
-      return "Carreta";
-    }
   }
 
 }

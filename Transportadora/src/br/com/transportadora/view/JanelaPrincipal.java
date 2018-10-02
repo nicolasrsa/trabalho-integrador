@@ -36,7 +36,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
   public void atualizarComponentes() {
     panelListaEncomendas1.atualizarListaEncomendas();
     panelListaMotoristas.atualizarListaMotoristas();
-    panelListaRoteiros1.configurarListaRoteiros();
+    panelListaRoteiros1.configurarListaRoteirosDiarios();
     panelListaVeiculos1.atualizarListaVeiculos();
   }
 
@@ -69,6 +69,17 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setTitle("Transportadora");
     getContentPane().setLayout(new java.awt.GridBagLayout());
+
+    panelTabs.addFocusListener(new java.awt.event.FocusAdapter() {
+      public void focusGained(java.awt.event.FocusEvent evt) {
+        panelTabsFocusGained(evt);
+      }
+    });
+    panelTabs.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseClicked(java.awt.event.MouseEvent evt) {
+        panelTabsMouseClicked(evt);
+      }
+    });
 
     jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
     jScrollPane1.setViewportView(panelListaMotoristas);
@@ -151,9 +162,9 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     }
 
     Veiculo veiculo = dialog.gerarVeiculo();
-    TransportadoraController.getInstance().salvarVeiculo(veiculo);
-    panelListaVeiculos1.atualizarListaVeiculos();
-    panelTabs.setEnabledAt(1, true);
+    TransportadoraController.getInstance().cadastrarVeiculo(veiculo);
+    panelTabs.setSelectedIndex(1);
+    atualizarComponentes();
   }//GEN-LAST:event_jMenuItem1ActionPerformed
 
   private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
@@ -171,9 +182,9 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     motorista.setEndereco(dialogo.getEndereco());
     motorista.setCnh(dialogo.getCnh());
 
-    TransportadoraController.getInstance().salvarMotorista(motorista);
-    panelListaMotoristas.atualizarListaMotoristas();
-    panelTabs.setEnabledAt(0, true);
+    TransportadoraController.getInstance().cadastrarMotorista(motorista);
+    panelTabs.setSelectedIndex(0);
+    atualizarComponentes();
   }//GEN-LAST:event_jMenuItem2ActionPerformed
 
   private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
@@ -186,9 +197,9 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     }
 
     Encomenda encomenda = dialogo.gerarEncomenda();
-    TransportadoraController.getInstance().salvarEncomenda(encomenda);
-    panelListaEncomendas1.atualizarListaEncomendas();
-    panelTabs.setEnabledAt(2, true);
+    TransportadoraController.getInstance().cadastrarEncomenda(encomenda);
+    panelTabs.setSelectedIndex(2);
+    atualizarComponentes();
   }//GEN-LAST:event_jMenuItem3ActionPerformed
 
   private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
@@ -202,13 +213,23 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 
     LocalDate data = dialogo.getData();
     try {
-      TransportadoraController.getInstance().gerarProgramacaoDiaria(data);
+      TransportadoraController.getInstance().gerarRoteiroDiario(data);
     } catch (RoteiroDiarioDuplicadoException ex) {
       JOptionPane.showMessageDialog(null, "Já foi gerado um roteiro diário para essa data");
     }
-    panelListaRoteiros1.configurarListaRoteiros();
-    panelTabs.setEnabledAt(3, true);
+    panelTabs.setSelectedIndex(3);
+    atualizarComponentes();
   }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+  private void panelTabsFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_panelTabsFocusGained
+    // TODO add your handling code here:
+    //atualizarComponentes();
+  }//GEN-LAST:event_panelTabsFocusGained
+
+    private void panelTabsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelTabsMouseClicked
+    // TODO add your handling code here:
+    atualizarComponentes();
+    }//GEN-LAST:event_panelTabsMouseClicked
 
   /**
    * @param args the command line arguments

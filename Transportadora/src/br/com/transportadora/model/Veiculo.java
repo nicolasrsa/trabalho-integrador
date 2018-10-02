@@ -1,22 +1,18 @@
 package br.com.transportadora.model;
 
-import java.util.ArrayList;
 
-
-public abstract class Veiculo {
+public abstract class Veiculo implements Comparable<Veiculo> {
 
   private String marca;
   private String modelo;
   private String placa;
   private Integer ano;
   private ClasseCNH cnhMinima;
-  private final ArrayList<Encomenda> carga;
-  private final Integer cargaMax;
+  private final int capacidadeDeCarga;
   private Motorista motorista;
 
-  public Veiculo(Integer capacidade, ClasseCNH cnhMinima) {
-    this.cargaMax = capacidade;
-    this.carga = new ArrayList<>(cargaMax);
+  public Veiculo(int capacidade, ClasseCNH cnhMinima) {
+    this.capacidadeDeCarga = capacidade;
     this.cnhMinima = cnhMinima;
   }
 
@@ -64,20 +60,17 @@ public abstract class Veiculo {
     this.motorista = motorista;
   }
 
-  public ArrayList<Encomenda> getCarga() {
-    return carga;
+  public void setMarca(String marca) {
+    this.marca = marca;
   }
 
-  public Integer getCargaMax() {
-    return cargaMax;
+  public int getCapacidadeDeCarga() {
+    return capacidadeDeCarga;
   }
 
-  public Boolean adicionarEncomenda(Encomenda encomenda) {
-    if (this.carga.size() < this.cargaMax) {
-      this.carga.add(encomenda);
-      return true;
-    }
-    return false;
+  @Override
+  public int compareTo(Veiculo outroVeiculo) {
+    return this.capacidadeDeCarga - outroVeiculo.capacidadeDeCarga;
   }
 
   public abstract boolean podeSerDirigidoPor(Motorista motorista);

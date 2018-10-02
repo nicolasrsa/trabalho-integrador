@@ -53,6 +53,7 @@ public class DialogCadVeiculo extends javax.swing.JDialog {
     veiculo.setAno(new Integer(((Number) inputAno.getValue()).intValue()));
     veiculo.setModelo(inputModelo.getText());
     veiculo.setPlaca(inputPlaca.getText());
+    veiculo.setMarca(inputMarca.getText());
     return veiculo;
   }
 

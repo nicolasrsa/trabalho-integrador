@@ -2,12 +2,10 @@ package br.com.transportadora.controller;
 
 import br.com.transportadora.model.Encomenda;
 import br.com.transportadora.model.Motorista;
-import br.com.transportadora.model.ProgramacaoDiaria;
-import br.com.transportadora.model.Roteiro;
+import br.com.transportadora.model.RoteiroDiario;
 import br.com.transportadora.model.Transportadora;
 import br.com.transportadora.model.Veiculo;
 import java.time.LocalDate;
-import java.util.Collections;
 import java.util.List;
 
 
@@ -25,16 +23,16 @@ public class TransportadoraController {
     return instance;
   }
 
-  public void salvarMotorista(Motorista motorista) {
-    Transportadora.getInstance().getMotoristas().add(motorista);
+  public void cadastrarMotorista(Motorista motorista) {
+    Transportadora.getInstance().cadastrarMotorista(motorista);
   }
 
   public List<Motorista> listarMotoristas() {
     return Transportadora.getInstance().getMotoristas();
   }
 
-  public void salvarVeiculo(Veiculo veiculo) {
-    Transportadora.getInstance().getVeiculos().add(veiculo);
+  public void cadastrarVeiculo(Veiculo veiculo) {
+    Transportadora.getInstance().cadastrarVeiculo(veiculo);
   }
 
   public List<Veiculo> listarVeiculos() {
@@ -45,21 +43,16 @@ public class TransportadoraController {
     return Transportadora.getInstance().getEncomendas();
   }
 
-  public void salvarEncomenda(Encomenda encomenda) {
-    Transportadora.getInstance().getEncomendas().add(0, encomenda);
+  public void cadastrarEncomenda(Encomenda encomenda) {
+    Transportadora.getInstance().cadastrarEncomenda(encomenda);
   }
 
-  public List<ProgramacaoDiaria> listarProgramacoesDiarias() {
-    return Transportadora.getInstance().getProgramacoesDiarias();
-  }
-
-  public void salvarProgramacaoDiaria(ProgramacaoDiaria programacaoDiaria) {
-    Transportadora.getInstance().getProgramacoesDiarias().add(programacaoDiaria);
-    Collections.sort(Transportadora.getInstance().getProgramacoesDiarias());
+  public List<RoteiroDiario> listarRoteirosDiarios() {
+    return Transportadora.getInstance().getRoteirosDiarios();
   }
 
   public boolean checarDataRoteiroValida(LocalDate data) {
-    for (ProgramacaoDiaria programacaoDiaria : listarProgramacoesDiarias()) {
+    for (RoteiroDiario programacaoDiaria : listarRoteirosDiarios()) {
       if (programacaoDiaria.getData().equals(data)) {
         return false;
       }
@@ -67,42 +60,12 @@ public class TransportadoraController {
     return true;
   }
 
-  public void gerarProgramacaoDiaria(LocalDate data) throws RoteiroDiarioDuplicadoException {
+  public void gerarRoteiroDiario(LocalDate data) throws RoteiroDiarioDuplicadoException {
     if (checarDataRoteiroValida(data)) {
-      Transportadora.getInstance().gerarRoteirosParaODia(data);
+      Transportadora.getInstance().gerarRoteirosDiarios(data);
     } else {
       throw new RoteiroDiarioDuplicadoException();
     }
-  }
-
-  public void registrarEntrega(ProgramacaoDiaria programacaoDiaria, String codigoEncomenda) throws CodigoEncomendaInvalidoException {
-    if (!this.checarCodigoRoteiroValido(programacaoDiaria, codigoEncomenda)) {
-      throw new CodigoEncomendaInvalidoException();
-    }
-    programacaoDiaria.registrarEntregaRealizada(codigoEncomenda);
-  }
-
-  public void registrarEntregaNaoRealizada(ProgramacaoDiaria programacaoDiaria, String codigoEncomenda) throws CodigoEncomendaInvalidoException {
-    if (!this.checarCodigoRoteiroValido(programacaoDiaria, codigoEncomenda)) {
-      throw new CodigoEncomendaInvalidoException();
-    }
-    programacaoDiaria.registrarEntregaNaoRealizada(codigoEncomenda);
-  }
-
-  private boolean checarCodigoRoteiroValido(ProgramacaoDiaria programacaoDiaria, String codigoEncomenda) {
-    if (codigoEncomenda == null) {
-      return false;
-    }
-
-    for (Roteiro roteiro : programacaoDiaria.getRoteiros()) {
-      for (Encomenda encomenda : roteiro.getEncomendas()) {
-        if (encomenda.getCodigo().equals(codigoEncomenda)) {
-          return true;
-        }
-      }
-    }
-
-    return false;
   }
 
 }

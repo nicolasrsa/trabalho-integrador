@@ -6,12 +6,12 @@ import java.util.List;
 import java.util.Objects;
 
 
-public class ProgramacaoDiaria implements Comparable<ProgramacaoDiaria> {
+public class RoteiroDiario implements Comparable<RoteiroDiario> {
 
   private LocalDate data;
   private List<Roteiro> roteiros;
 
-  public ProgramacaoDiaria(LocalDate data, List<Roteiro> roteiros) {
+  public RoteiroDiario(LocalDate data, List<Roteiro> roteiros) {
     this.data = data;
     this.roteiros = roteiros;
   }
@@ -35,7 +35,7 @@ public class ProgramacaoDiaria implements Comparable<ProgramacaoDiaria> {
     if (getClass() != obj.getClass()) {
       return false;
     }
-    final ProgramacaoDiaria other = (ProgramacaoDiaria) obj;
+    final RoteiroDiario other = (RoteiroDiario) obj;
     if (!Objects.equals(this.data, other.data)) {
       return false;
     }
@@ -43,7 +43,7 @@ public class ProgramacaoDiaria implements Comparable<ProgramacaoDiaria> {
   }
 
   @Override
-  public int compareTo(ProgramacaoDiaria o) {
+  public int compareTo(RoteiroDiario o) {
     return this.data.compareTo(o.data);
   }
 
@@ -52,26 +52,26 @@ public class ProgramacaoDiaria implements Comparable<ProgramacaoDiaria> {
     return data.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
   }
 
-  public void registrarEntregaRealizada(String codigoEncomenda) {
+  public boolean registrarEntregaRealizada(Encomenda encomenda) {
     for (Roteiro roteiro : getRoteiros()) {
-      for (Encomenda encomenda : roteiro.getEncomendas()) {
-        if (encomenda.getCodigo().equals(codigoEncomenda)) {
-          roteiro.resgistrarEntregaRealizada(codigoEncomenda);
-          return;
+      for (Encomenda e : roteiro.getEncomendas()) {
+        if (e.equals(encomenda)) {
+          return roteiro.resgistrarEntregaRealizada(encomenda);
         }
       }
     }
+    return false;
   }
 
-  public void registrarEntregaNaoRealizada(String codigoEncomenda) {
+  public boolean registrarEntregaNaoRealizada(Encomenda encomenda) {
     for (Roteiro roteiro : getRoteiros()) {
-      for (Encomenda encomenda : roteiro.getEncomendas()) {
-        if (encomenda.getCodigo().equals(codigoEncomenda)) {
-          roteiro.resgistrarEntregaNaoRealizada(codigoEncomenda);
-          return;
+      for (Encomenda e : roteiro.getEncomendas()) {
+        if (e.equals(encomenda)) {
+          return roteiro.resgistrarEntregaNaoRealizada(encomenda);
         }
       }
     }
+    return false;
   }
 
 }
