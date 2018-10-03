@@ -1,14 +1,16 @@
 package br.com.transportadora.model;
 
+import java.io.Serializable;
 
-public abstract class Pessoa {
+
+public abstract class Pessoa implements Serializable {
 
   private String nome;
   private Endereco endereco;
 
   public Pessoa() {
   }
-  
+
   public Pessoa(String nome, Endereco endereco) {
     this.nome = nome;
     this.endereco = endereco;

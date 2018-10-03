@@ -1,92 +1,88 @@
 package br.com.transportadora.model;
 
+import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 
-public class Roteiro {
-  
-  private Long codigo;
-  private List<Long> entregasRealizadas = new ArrayList<>();
-  private List<Long> entregasNaoRealizadas = new ArrayList<>();
-  private Date data;
+public class Roteiro implements Serializable {
 
+  private LocalDate data;
   private Motorista motorista;
   private Veiculo veiculo;
-  private List<Encomenda> encomendas = new ArrayList<>();
+  private List<Encomenda> encomendas;
+  private List<Encomenda> entregasRealizadas;
+  private List<Encomenda> entregasNaoRealizadas;
 
-  public Roteiro() {
-  }
-
-  public Roteiro(Long codigo, Date data, Motorista motorista, Veiculo veiculo) {
-    this.codigo = codigo;
+  public Roteiro(LocalDate data, Motorista motorista, Veiculo veiculo) {
     this.data = data;
     this.motorista = motorista;
     this.veiculo = veiculo;
+    this.encomendas = new ArrayList<>();
+    this.entregasRealizadas = new ArrayList<>();
+    this.entregasNaoRealizadas = new ArrayList<>();
   }
 
-  public Long getCodigo() {
-    return codigo;
-  }
-
-  public void setCodigo(Long codigo) {
-    this.codigo = codigo;
-  }
-
-  public List<Long> getEntregasRealizadas() {
-    return entregasRealizadas;
-  }
-
-  public void setEntregasRealizadas(List<Long> entregasRealizadas) {
-    this.entregasRealizadas = entregasRealizadas;
-  }
-
-  public List<Long> getEntregasNaoRealizadas() {
-    return entregasNaoRealizadas;
-  }
-
-  public void setEntregasNaoRealizadas(List<Long> entregasNaoRealizadas) {
-    this.entregasNaoRealizadas = entregasNaoRealizadas;
-  }
-
-  public Date getData() {
+  public LocalDate getData() {
     return data;
   }
 
-  public void setData(Date data) {
-    this.data = data;
-  }
-  
   public Motorista getMotorista() {
     return motorista;
-  }
-
-  public void setMotorista(Motorista motorista) {
-    this.motorista = motorista;
   }
 
   public Veiculo getVeiculo() {
     return veiculo;
   }
 
-  public void setVeiculo(Veiculo veiculo) {
-    this.veiculo = veiculo;
-  }
-
   public List<Encomenda> getEncomendas() {
     return encomendas;
   }
 
-  public void setEncomendas(List<Encomenda> encomendas) {
-    this.encomendas = encomendas;
+  public List<Encomenda> getEntregasRealizadas() {
+    return entregasRealizadas;
   }
 
-  public void resgistrarEntregaRealizada(Long codigoEntrega) {
-
+  public List<Encomenda> getEntregasNaoRealizadas() {
+    return entregasNaoRealizadas;
   }
 
-  public void resgistrarEntregaNaoRealizada(Long codigo) {
+  public void alocarEncomenda(Encomenda encomenda) {
+    encomenda.setStatusEncomenda(StatusEncomenda.EM_TRANSPORTE);
+    this.encomendas.add(encomenda);
+  }
 
+  public boolean resgistrarEntregaRealizada(Encomenda encomenda) {
+    if (encomenda != null && !entregasRealizadas.contains(encomenda)) {
+      encomenda.setStatusEncomenda(StatusEncomenda.ENTREGUE);
+      entregasRealizadas.add(encomenda);
+      return true;
+    }
+    return false;
+  }
+
+  public boolean resgistrarEntregaNaoRealizada(Encomenda encomenda) {
+    if (encomenda != null && !entregasNaoRealizadas.contains(encomenda)) {
+      encomenda.setStatusEncomenda(StatusEncomenda.AGUARDANDO_TRANSPORTE);
+      entregasNaoRealizadas.add(encomenda);
+      return true;
+    }
+    return false;
+  }
+
+  public Encomenda buscarEncomendaPorCodigo(String codigo) {
+    Encomenda encomenda = null;
+    for (Encomenda e : encomendas) {
+      if (e.getCodigo().equals(encomenda.getCodigo())) {
+        return e;
+      }
+    }
+    return null;
+  }
+
+  @Override
+  public String toString() {
+    return motorista.getNome();
   }
 }

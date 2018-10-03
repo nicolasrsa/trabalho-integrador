@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/home/hatachi/Documents/unisul/topicos_avancados_programacao/TrabalhoIntegrador/Transportadora/src/br/com/transportadora/model/Endereco.java</file>
+            <file>file:/home/hatachi/Documents/unisul/topicos_avancados_programacao/TrabalhoIntegrador/Transportadora/src/br/com/transportadora/controller/Main.java</file>
+            <file>file:/home/hatachi/Documents/unisul/topicos_avancados_programacao/TrabalhoIntegrador/Transportadora/src/br/com/transportadora/model/Transportadora.java</file>
+            <file>file:/home/hatachi/Documents/unisul/topicos_avancados_programacao/TrabalhoIntegrador/Transportadora/src/br/com/transportadora/view/panels/PanelListaVeiculos.java</file>
+            <file>file:/home/hatachi/Documents/unisul/topicos_avancados_programacao/TrabalhoIntegrador/Transportadora/src/br/com/transportadora/view/dialogs/DialogCadVeiculo.java</file>
+            <file>file:/home/hatachi/Documents/unisul/topicos_avancados_programacao/TrabalhoIntegrador/Transportadora/src/br/com/transportadora/model/utils/GerenciadorSerializacao.java</file>
+            <file>file:/home/hatachi/Documents/unisul/topicos_avancados_programacao/TrabalhoIntegrador/Transportadora/src/br/com/transportadora/model/Carreta.java</file>
+            <file>file:/home/hatachi/Documents/unisul/topicos_avancados_programacao/TrabalhoIntegrador/Transportadora/src/br/com/transportadora/view/dialogs/DialogGerarRoteiro.java</file>
+            <file>file:/home/hatachi/Documents/unisul/topicos_avancados_programacao/TrabalhoIntegrador/Transportadora/src/br/com/transportadora/view/panels/PanelDetalheVeiculo.java</file>
+            <file>file:/home/hatachi/Documents/unisul/topicos_avancados_programacao/TrabalhoIntegrador/Transportadora/src/br/com/transportadora/view/panels/PanelCadCnh.java</file>
+            <file>file:/home/hatachi/Documents/unisul/topicos_avancados_programacao/TrabalhoIntegrador/Transportadora/src/br/com/transportadora/model/Motorista.java</file>
+            <file>file:/home/hatachi/Documents/unisul/topicos_avancados_programacao/TrabalhoIntegrador/Transportadora/src/br/com/transportadora/view/dialogs/DialogCadMotorista.java</file>
+            <file>file:/home/hatachi/Documents/unisul/topicos_avancados_programacao/TrabalhoIntegrador/Transportadora/src/br/com/transportadora/view/panels/PanelDetalheRoteiroDiario.java</file>
+            <file>file:/home/hatachi/Documents/unisul/topicos_avancados_programacao/TrabalhoIntegrador/Transportadora/src/br/com/transportadora/view/panels/PanelListaRoteiros.java</file>
+            <file>file:/home/hatachi/Documents/unisul/topicos_avancados_programacao/TrabalhoIntegrador/Transportadora/src/br/com/transportadora/model/RoteiroDiario.java</file>
+            <file>file:/home/hatachi/Documents/unisul/topicos_avancados_programacao/TrabalhoIntegrador/Transportadora/src/br/com/transportadora/model/StatusEncomenda.java</file>
+            <file>file:/home/hatachi/Documents/unisul/topicos_avancados_programacao/TrabalhoIntegrador/Transportadora/src/br/com/transportadora/view/panels/PanelDetalheEndereco.java</file>
+            <file>file:/home/hatachi/Documents/unisul/topicos_avancados_programacao/TrabalhoIntegrador/Transportadora/src/br/com/transportadora/view/dialogs/DialogoCadEncomenda.java</file>
+            <file>file:/home/hatachi/Documents/unisul/topicos_avancados_programacao/TrabalhoIntegrador/Transportadora/src/br/com/transportadora/view/panels/PanelListaMotoristas.java</file>
+            <file>file:/home/hatachi/Documents/unisul/topicos_avancados_programacao/TrabalhoIntegrador/Transportadora/src/br/com/transportadora/view/panels/PanelDetalheMotorista.java</file>
+            <file>file:/home/hatachi/Documents/unisul/topicos_avancados_programacao/TrabalhoIntegrador/Transportadora/src/br/com/transportadora/view/JanelaPrincipal.java</file>
+            <file>file:/home/hatachi/Documents/unisul/topicos_avancados_programacao/TrabalhoIntegrador/Transportadora/src/br/com/transportadora/model/Veiculo.java</file>
+            <file>file:/home/hatachi/Documents/unisul/topicos_avancados_programacao/TrabalhoIntegrador/Transportadora/src/br/com/transportadora/view/panels/PanelCadEndereco.java</file>
+            <file>file:/home/hatachi/Documents/unisul/topicos_avancados_programacao/TrabalhoIntegrador/Transportadora/src/br/com/transportadora/model/exceptions/RoteiroDiarioDuplicadoException.java</file>
+            <file>file:/home/hatachi/Documents/unisul/topicos_avancados_programacao/TrabalhoIntegrador/Transportadora/src/br/com/transportadora/model/Roteiro.java</file>
+            <file>file:/home/hatachi/Documents/unisul/topicos_avancados_programacao/TrabalhoIntegrador/Transportadora/src/br/com/transportadora/model/ClasseCNH.java</file>
+            <file>file:/home/hatachi/Documents/unisul/topicos_avancados_programacao/TrabalhoIntegrador/Transportadora/src/br/com/transportadora/controller/TransportadoraController.java</file>
+            <file>file:/home/hatachi/Documents/unisul/topicos_avancados_programacao/TrabalhoIntegrador/Transportadora/src/br/com/transportadora/model/CaminhaoBau.java</file>
+            <file>file:/home/hatachi/Documents/unisul/topicos_avancados_programacao/TrabalhoIntegrador/Transportadora/src/br/com/transportadora/model/Estado.java</file>
+            <file>file:/home/hatachi/Documents/unisul/topicos_avancados_programacao/TrabalhoIntegrador/Transportadora/src/br/com/transportadora/model/Pessoa.java</file>
+            <file>file:/home/hatachi/Documents/unisul/topicos_avancados_programacao/TrabalhoIntegrador/Transportadora/src/br/com/transportadora/model/Destinatario.java</file>
+            <file>file:/home/hatachi/Documents/unisul/topicos_avancados_programacao/TrabalhoIntegrador/Transportadora/src/br/com/transportadora/view/panels/PanelDetalheCnh.java</file>
+            <file>file:/home/hatachi/Documents/unisul/topicos_avancados_programacao/TrabalhoIntegrador/Transportadora/src/br/com/transportadora/view/panels/PanelDetalheEncomenda.java</file>
+            <file>file:/home/hatachi/Documents/unisul/topicos_avancados_programacao/TrabalhoIntegrador/Transportadora/src/br/com/transportadora/model/Cnh.java</file>
+            <file>file:/home/hatachi/Documents/unisul/topicos_avancados_programacao/TrabalhoIntegrador/Transportadora/src/br/com/transportadora/model/Remetente.java</file>
+            <file>file:/home/hatachi/Documents/unisul/topicos_avancados_programacao/TrabalhoIntegrador/Transportadora/src/br/com/transportadora/model/Van.java</file>
+            <file>file:/home/hatachi/Documents/unisul/topicos_avancados_programacao/TrabalhoIntegrador/Transportadora/src/br/com/transportadora/model/Encomenda.java</file>
+            <file>file:/home/hatachi/Documents/unisul/topicos_avancados_programacao/TrabalhoIntegrador/Transportadora/src/br/com/transportadora/view/panels/PanelListaEncomendas.java</file>
+        </group>
+    </open-files>
+</project-private>

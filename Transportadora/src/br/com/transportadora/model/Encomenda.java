@@ -1,23 +1,23 @@
 package br.com.transportadora.model;
 
-import java.util.Date;
+import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.Objects;
 
-public class Encomenda {
 
-  private long proxCodigo;
+public class Encomenda implements Comparable<Encomenda>, Serializable {
+
+  private static long proximoCodigo = 1;
+
   private Remetente remetente;
   private Destinatario destinatario;
-  private Date datacadastro;
+  private LocalDate dataCadastro;
   private double peso;
-  private Long codigo;
+  private String codigo;
   private StatusEncomenda statusEncomenda;
-  
-  public long getProxCodigo() {
-    return proxCodigo;
-  }
 
-  public void setProxCodigo(long proxCodigo) {
-    this.proxCodigo = proxCodigo;
+  public Encomenda() {
+    this.statusEncomenda = StatusEncomenda.AGUARDANDO_TRANSPORTE;
   }
 
   public Remetente getRemetente() {
@@ -36,12 +36,12 @@ public class Encomenda {
     this.destinatario = destinatario;
   }
 
-  public Date getDatacadastro() {
-    return datacadastro;
+  public LocalDate getDataCadastro() {
+    return dataCadastro;
   }
 
-  public void setDatacadastro(Date datacadastro) {
-    this.datacadastro = datacadastro;
+  public void setDataCadastro(LocalDate dataCadastro) {
+    this.dataCadastro = dataCadastro;
   }
 
   public double getPeso() {
@@ -52,12 +52,16 @@ public class Encomenda {
     this.peso = peso;
   }
 
-  public Long getCodigo() {
+  public String getCodigo() {
     return codigo;
   }
 
-  public void setCodigo(Long codigo) {
-    this.codigo = codigo;
+  public void setCodigo(String codigo) {
+    if (codigo.equals("")) {
+      this.codigo = gerarCodigoValido();
+    } else {
+      this.codigo = codigo;
+    }
   }
 
   public StatusEncomenda getStatusEncomenda() {
@@ -66,6 +70,45 @@ public class Encomenda {
 
   public void setStatusEncomenda(StatusEncomenda statusEncomenda) {
     this.statusEncomenda = statusEncomenda;
+  }
+
+  @Override
+  public String toString() {
+    return codigo.toString();
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+    final Encomenda other = (Encomenda) obj;
+    if (!Objects.equals(this.codigo, other.codigo)) {
+      return false;
+    }
+    return true;
+  }
+
+  private String gerarCodigoValido() {
+    String codigo = "";
+
+    do {
+      codigo = Long.toString(proximoCodigo);
+      proximoCodigo++;
+    } while (Transportadora.getInstance().codigoJaExiste(codigo));
+
+    return codigo;
+  }
+
+  @Override
+  public int compareTo(Encomenda o) {
+    return this.dataCadastro.compareTo(o.dataCadastro);
   }
 
 }
