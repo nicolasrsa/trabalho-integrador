@@ -1,10 +1,11 @@
 package br.com.transportadora.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
 
-public class Encomenda implements Comparable<Encomenda> {
+public class Encomenda implements Comparable<Encomenda>, Serializable {
 
   private static long proximoCodigo = 1;
 

@@ -1,18 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.transportadora.view.panels;
 
 import br.com.transportadora.model.ClasseCNH;
 import br.com.transportadora.model.Cnh;
 
 
-/**
- *
- * @author hatachi
- */
 public class PanelCadCnh extends javax.swing.JPanel {
 
   /**
@@ -76,7 +67,6 @@ public class PanelCadCnh extends javax.swing.JPanel {
     gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
     add(inputTipoCNH, gridBagConstraints);
   }// </editor-fold>//GEN-END:initComponents
-
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JTextField inputNroCNH;

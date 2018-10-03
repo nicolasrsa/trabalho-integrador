@@ -1,15 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.transportadora.view;
 
-import br.com.transportadora.controller.RoteiroDiarioDuplicadoException;
 import br.com.transportadora.controller.TransportadoraController;
 import br.com.transportadora.model.Encomenda;
 import br.com.transportadora.model.Motorista;
 import br.com.transportadora.model.Veiculo;
+import br.com.transportadora.model.exceptions.RoteiroDiarioDuplicadoException;
 import br.com.transportadora.view.dialogs.DialogCadMotorista;
 import br.com.transportadora.view.dialogs.DialogCadVeiculo;
 import br.com.transportadora.view.dialogs.DialogGerarRoteiro;
@@ -18,19 +13,10 @@ import java.time.LocalDate;
 import javax.swing.JOptionPane;
 
 
-/**
- *
- * @author hatachi
- */
 public class JanelaPrincipal extends javax.swing.JFrame {
 
-  /**
-   * Creates new form JanelaPrincipal
-   */
   public JanelaPrincipal() {
     initComponents();
-    //ImageIcon img = new ImageIcon(getClass().getResource("/images/icon_small.png"));
-    //setIconImage(img.getImage());
   }
 
   public void atualizarComponentes() {
@@ -68,6 +54,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setTitle("Transportadora");
+    setIconImages(null);
     getContentPane().setLayout(new java.awt.GridBagLayout());
 
     panelTabs.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -230,41 +217,6 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     // TODO add your handling code here:
     atualizarComponentes();
     }//GEN-LAST:event_panelTabsMouseClicked
-
-  /**
-   * @param args the command line arguments
-   */
-  public static void main(String args[]) {
-    /* Set the Nimbus look and feel */
-    //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-    /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-     */
-    try {
-      for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-        if ("Nimbus".equals(info.getName())) {
-          javax.swing.UIManager.setLookAndFeel(info.getClassName());
-          break;
-        }
-      }
-    } catch (ClassNotFoundException ex) {
-      java.util.logging.Logger.getLogger(JanelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    } catch (InstantiationException ex) {
-      java.util.logging.Logger.getLogger(JanelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    } catch (IllegalAccessException ex) {
-      java.util.logging.Logger.getLogger(JanelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-      java.util.logging.Logger.getLogger(JanelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    }
-    //</editor-fold>
-
-    /* Create and display the form */
-    java.awt.EventQueue.invokeLater(new Runnable() {
-      public void run() {
-        new JanelaPrincipal().setVisible(true);
-      }
-    });
-  }
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JMenu jMenu1;

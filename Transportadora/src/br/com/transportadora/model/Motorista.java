@@ -1,9 +1,10 @@
 package br.com.transportadora.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 
-public class Motorista extends Pessoa implements Comparable<Motorista> {
+public class Motorista extends Pessoa implements Comparable<Motorista>, Serializable {
 
   private static long proxCodigo = 1;
 

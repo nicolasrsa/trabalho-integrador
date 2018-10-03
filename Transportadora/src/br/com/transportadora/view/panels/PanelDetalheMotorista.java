@@ -4,10 +4,6 @@ import br.com.transportadora.model.Motorista;
 import java.time.format.DateTimeFormatter;
 
 
-/**
- *
- * @author hatachi
- */
 public class PanelDetalheMotorista extends javax.swing.JPanel {
 
   private Motorista motorista;

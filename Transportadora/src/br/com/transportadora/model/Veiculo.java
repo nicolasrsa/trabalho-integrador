@@ -1,7 +1,9 @@
 package br.com.transportadora.model;
 
+import java.io.Serializable;
 
-public abstract class Veiculo implements Comparable<Veiculo> {
+
+public abstract class Veiculo implements Comparable<Veiculo>, Serializable {
 
   private String marca;
   private String modelo;
@@ -9,7 +11,6 @@ public abstract class Veiculo implements Comparable<Veiculo> {
   private Integer ano;
   private ClasseCNH cnhMinima;
   private final int capacidadeDeCarga;
-  private Motorista motorista;
 
   public Veiculo(int capacidade, ClasseCNH cnhMinima) {
     this.capacidadeDeCarga = capacidade;
@@ -50,14 +51,6 @@ public abstract class Veiculo implements Comparable<Veiculo> {
 
   public void setCnhMinima(ClasseCNH cnhMinima) {
     this.cnhMinima = cnhMinima;
-  }
-
-  public Motorista getMotorista() {
-    return motorista;
-  }
-
-  public void setMotorista(Motorista motorista) {
-    this.motorista = motorista;
   }
 
   public void setMarca(String marca) {

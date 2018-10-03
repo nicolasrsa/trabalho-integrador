@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.transportadora.view.panels;
 
 import br.com.transportadora.controller.TransportadoraController;
@@ -11,10 +6,6 @@ import java.util.List;
 import javax.swing.DefaultListModel;
 
 
-/**
- *
- * @author hatachi
- */
 public class PanelListaRoteiros extends javax.swing.JPanel {
 
   List<RoteiroDiario> roteirosDiarios;
@@ -47,7 +38,8 @@ public class PanelListaRoteiros extends javax.swing.JPanel {
 
     setLayout(new java.awt.GridBagLayout());
 
-    jPanel1.setMinimumSize(new java.awt.Dimension(100, 20));
+    jPanel1.setMinimumSize(new java.awt.Dimension(120, 250));
+    jPanel1.setPreferredSize(new java.awt.Dimension(120, 250));
     jPanel1.setLayout(new java.awt.GridBagLayout());
 
     jLabel1.setText("Roteiros");

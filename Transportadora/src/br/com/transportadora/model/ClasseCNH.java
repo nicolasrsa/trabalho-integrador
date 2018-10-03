@@ -1,7 +1,9 @@
 package br.com.transportadora.model;
 
+import java.io.Serializable;
 
-public enum ClasseCNH {
+
+public enum ClasseCNH implements Serializable {
 
   B("B"),
   C("C"),

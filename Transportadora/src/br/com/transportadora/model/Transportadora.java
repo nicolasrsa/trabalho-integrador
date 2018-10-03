@@ -1,13 +1,19 @@
 package br.com.transportadora.model;
 
+import br.com.transportadora.model.utils.GerenciadorSerializacao;
+import java.io.IOException;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 
-public class Transportadora {
+public class Transportadora implements Serializable {
 
   private static Transportadora instance = null;
 
@@ -25,7 +31,18 @@ public class Transportadora {
 
   public static Transportadora getInstance() {
     if (instance == null) {
-      instance = new Transportadora();
+      try {
+        instance = GerenciadorSerializacao.carregarTransportadora();
+      } catch (IOException ex) {
+        Logger.getLogger(Transportadora.class.getName()).log(Level.INFO, "Nenhum arquivo encontrado.");
+      } catch (ClassNotFoundException ex) {
+        Logger.getLogger(Transportadora.class.getName()).log(Level.INFO, "Classe não encontrado.");
+      }
+
+      if (instance == null) {
+        Logger.getLogger(Transportadora.class.getName()).log(Level.INFO, "Gerando nova instância para transportadora.");
+        instance = new Transportadora();
+      }
     }
     return instance;
   }
@@ -34,6 +51,7 @@ public class Transportadora {
     this.motoristas.add(motorista);
     Collections.sort(motoristas);
     Collections.reverse(motoristas);
+    salvarEmArquivo();
   }
 
   public List<Motorista> getMotoristas() {
@@ -44,6 +62,7 @@ public class Transportadora {
     this.veiculos.add(veiculo);
     Collections.sort(veiculos);
     Collections.reverse(veiculos);
+    salvarEmArquivo();
   }
 
   public List<Veiculo> getVeiculos() {
@@ -53,6 +72,7 @@ public class Transportadora {
   public void cadastrarEncomenda(Encomenda encomenda) {
     this.encomendas.add(encomenda);
     Collections.sort(encomendas);
+    salvarEmArquivo();
   }
 
   public List<Encomenda> getEncomendas() {
@@ -142,6 +162,7 @@ public class Transportadora {
     }
 
     this.roteirosDiarios.add(new RoteiroDiario(data, roteiros));
+    salvarEmArquivo();
   }
 
   private List<Motorista> motoristasDisponiveisParaRoteiro() {
@@ -159,6 +180,14 @@ public class Transportadora {
       }
     }
     return null;
+  }
+
+  public void salvarEmArquivo() {
+    try {
+      GerenciadorSerializacao.salvarTransportadora(getInstance());
+    } catch (IOException ex) {
+      JOptionPane.showMessageDialog(null, "Falha ao salvar em arquivo." + ex);
+    }
   }
 
 }

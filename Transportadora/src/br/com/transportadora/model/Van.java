@@ -3,8 +3,8 @@ package br.com.transportadora.model;
 
 public class Van extends Veiculo {
 
-  public static final int CAPACIDADE = 1;
-  public static final ClasseCNH CNH_MINIMA = ClasseCNH.B;
+  public transient static final int CAPACIDADE = 1;
+  public transient static final ClasseCNH CNH_MINIMA = ClasseCNH.B;
 
   public Van() {
     super(Van.CAPACIDADE, Van.CNH_MINIMA);

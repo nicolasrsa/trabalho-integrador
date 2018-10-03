@@ -1,5 +1,6 @@
 package br.com.transportadora.controller;
 
+import br.com.transportadora.model.exceptions.RoteiroDiarioDuplicadoException;
 import br.com.transportadora.model.Encomenda;
 import br.com.transportadora.model.Motorista;
 import br.com.transportadora.model.RoteiroDiario;
@@ -66,6 +67,10 @@ public class TransportadoraController {
     } else {
       throw new RoteiroDiarioDuplicadoException();
     }
+  }
+
+  public void salvarEmArquivo() {
+    Transportadora.getInstance().salvarEmArquivo();
   }
 
 }

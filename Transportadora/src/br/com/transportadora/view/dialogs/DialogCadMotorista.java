@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.transportadora.view.dialogs;
 
 import br.com.transportadora.model.Cnh;
@@ -11,10 +6,6 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 
 
-/**
- *
- * @author hatachi
- */
 public class DialogCadMotorista extends javax.swing.JDialog {
 
   private boolean salvo = false;

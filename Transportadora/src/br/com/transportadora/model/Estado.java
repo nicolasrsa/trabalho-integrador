@@ -1,7 +1,9 @@
 package br.com.transportadora.model;
 
+import java.io.Serializable;
 
-public enum Estado {
+
+public enum Estado implements Serializable {
 
   ACRE("AC", "Acre"),
   ALAGOAS("AL", "Alagoas"),

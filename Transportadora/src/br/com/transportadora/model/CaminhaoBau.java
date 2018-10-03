@@ -1,10 +1,12 @@
 package br.com.transportadora.model;
 
+import java.io.Serializable;
 
-public class CaminhaoBau extends Veiculo {
 
-  public static final int CAPACIDADE = 3;
-  public static final ClasseCNH CNH_MINIMA = ClasseCNH.C;
+public class CaminhaoBau extends Veiculo implements Serializable {
+
+  public transient static final int CAPACIDADE = 3;
+  public transient static final ClasseCNH CNH_MINIMA = ClasseCNH.C;
 
   public CaminhaoBau() {
     super(CaminhaoBau.CAPACIDADE, CaminhaoBau.CNH_MINIMA);

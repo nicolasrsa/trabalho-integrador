@@ -1,18 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.transportadora.view.panels;
 
 import br.com.transportadora.model.Endereco;
 import br.com.transportadora.model.Estado;
 
 
-/**
- *
- * @author hatachi
- */
 public class PanelCadEndereco extends javax.swing.JPanel {
 
   /**
@@ -21,7 +12,7 @@ public class PanelCadEndereco extends javax.swing.JPanel {
   public PanelCadEndereco() {
     initComponents();
   }
-  
+
   public Endereco gerarEndereco() {
     Endereco endereco = new Endereco();
     endereco.setRua(inputRua.getText());
@@ -200,7 +191,6 @@ public class PanelCadEndereco extends javax.swing.JPanel {
     gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
     add(inputRua, gridBagConstraints);
   }// </editor-fold>//GEN-END:initComponents
-
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JTextField inputBairro;

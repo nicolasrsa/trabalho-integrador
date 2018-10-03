@@ -1,18 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.transportadora.view.panels;
 
 import br.com.transportadora.controller.TransportadoraController;
 import br.com.transportadora.model.Motorista;
 
 
-/**
- *
- * @author hatachi
- */
 public class PanelListaMotoristas extends javax.swing.JPanel {
 
   /**

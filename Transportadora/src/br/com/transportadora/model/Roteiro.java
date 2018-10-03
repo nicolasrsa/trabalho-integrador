@@ -1,11 +1,12 @@
 package br.com.transportadora.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class Roteiro {
+public class Roteiro implements Serializable {
 
   private LocalDate data;
   private Motorista motorista;
@@ -48,6 +49,7 @@ public class Roteiro {
   }
 
   public void alocarEncomenda(Encomenda encomenda) {
+    encomenda.setStatusEncomenda(StatusEncomenda.EM_TRANSPORTE);
     this.encomendas.add(encomenda);
   }
 
