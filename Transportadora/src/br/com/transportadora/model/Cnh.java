@@ -1,10 +1,15 @@
 package br.com.transportadora.model;
 
-public class Cnh {
+import java.io.Serializable;
+
+
+public class Cnh implements Serializable {
+
   private String numero;
   private ClasseCNH classe;
 
-  public Cnh() {}
+  public Cnh() {
+  }
 
   public String getNumero() {
     return numero;

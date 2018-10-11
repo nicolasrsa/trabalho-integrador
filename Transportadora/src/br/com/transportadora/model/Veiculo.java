@@ -1,21 +1,20 @@
 package br.com.transportadora.model;
 
-import java.util.LinkedList;
-import java.util.Queue;
+import java.io.Serializable;
 
-public abstract class Veiculo {
+
+public abstract class Veiculo implements Comparable<Veiculo>, Serializable {
+
   private String marca;
   private String modelo;
   private String placa;
   private Integer ano;
   private ClasseCNH cnhMinima;
-  private final Queue<Encomenda> carga;
-  private final Integer cargaMax;
-  private Motorista motorista;
+  private final int capacidadeDeCarga;
 
-  public Veiculo(Integer capacidade) {
-    this.cargaMax = capacidade;
-    this.carga = new LinkedList<>();
+  public Veiculo(int capacidade, ClasseCNH cnhMinima) {
+    this.capacidadeDeCarga = capacidade;
+    this.cnhMinima = cnhMinima;
   }
 
   public String getMarca() {
@@ -54,27 +53,18 @@ public abstract class Veiculo {
     this.cnhMinima = cnhMinima;
   }
 
-  public Motorista getMotorista() {
-    return motorista;
+  public void setMarca(String marca) {
+    this.marca = marca;
   }
 
-  public void setMotorista(Motorista motorista) {
-    this.motorista = motorista;
+  public int getCapacidadeDeCarga() {
+    return capacidadeDeCarga;
   }
 
-  public Queue<Encomenda> getCarga() {
-    return carga;
+  @Override
+  public int compareTo(Veiculo outroVeiculo) {
+    return this.capacidadeDeCarga - outroVeiculo.capacidadeDeCarga;
   }
-  
-  public Encomenda getProximaEncomenda() {
-    return this.carga.poll();
-  }
-  
-  public Boolean adicionarEncomenda(Encomenda encomenda) {
-    if (this.carga.size() < this.cargaMax) {
-      this.carga.offer(encomenda);
-      return true;
-    }
-    return false;
-  }
+
+  public abstract boolean podeSerDirigidoPor(Motorista motorista);
 }
